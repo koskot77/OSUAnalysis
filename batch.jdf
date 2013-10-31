@@ -1,0 +1,12 @@
+universe   = vanilla
+Executable = run.sh
+Should_Transfer_Files   = NO
+Arguments = "1 250"
+Output  = tp4mu_1_250.out
+Error   = tp4mu_1_250.err
+Log     = tp4mu_1_250.log
+remove_kill_sig = 2
++IsLocalJob  = true
+Requirements = IsLocalSlot && Memory > 1024 && OpSys == "LINUX" && (Arch != "DUMMY")
+Queue 1
+

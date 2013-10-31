@@ -1,0 +1,17 @@
+<Flags ADD_SUBDIR="yes" />
+<FLAGS CXXFLAGS="-O3" />
+<FLAGS CXXFLAGS="-Wno-error=unused-but-set-variable" />
+<FLAGS CXXFLAGS="-Wno-error=reorder" />
+<use name="boost" />
+<use name="root" />
+<use name="rootcore" />
+<use name="DataFormats/FWLite" />
+
+<export>
+<use name="boost" />
+<use name="root" />
+<use name="rootcore" />
+<use name="DataFormats/FWLite" />
+<lib name="OSUAnalysisBEANsTools" />
+</export>
+

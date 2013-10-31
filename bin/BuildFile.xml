@@ -1,0 +1,9 @@
+<Flags ADD_SUBDIR="yes" />
+<FLAGS CXXFLAGS="-O3" />
+<use name="boost" />
+<use name="root" />
+<use name="rootcore" />
+<use name="OSUAnalysis/BEANsTools" />
+<use name="lhapdf"/>
+
+<bin name="OATexpert" file="Analysis*.cpp Run.cpp" />
