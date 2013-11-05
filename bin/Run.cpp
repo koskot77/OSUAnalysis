@@ -12,9 +12,9 @@
 #include <iostream>
 #include <boost/scoped_ptr.hpp>
 
-//#include "../Cert_198049-208686_8TeV_PromptReco_Collisions12_JSON.C"
-#include "../Cert_190456-203002_8TeV_PromptReco_Collisions12_JSON.C"
-#include "../Cert_190456-196531_8TeV_13Jul2012ReReco_Collisions12_JSON.C"
+////#include "../Cert_198049-208686_8TeV_PromptReco_Collisions12_JSON.C"
+//#include "../Cert_190456-203002_8TeV_PromptReco_Collisions12_JSON.C"
+//#include "../Cert_190456-196531_8TeV_13Jul2012ReReco_Collisions12_JSON.C"
 
 #include<stdio.h>
 #include<unistd.h>

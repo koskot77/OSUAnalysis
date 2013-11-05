@@ -94,8 +94,8 @@ void Analysis::printNumberOfProccessedEventsEvery(unsigned long printEvery) {
 
 }
 
-extern bool isGood(int,int); 
-extern bool isGoodPrompt(int,int); 
+//extern bool isGood(int,int); 
+//extern bool isGoodPrompt(int,int); 
 
 bool Analysis::initiateEvent() {
     currentEvent = eventReader->getNextEvent();
@@ -343,7 +343,9 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("lepton1EtaRec",  &lepton1EtaRec,"lepton1EtaRec/D");
     microTuple->Branch("lepton1PhiRec",  &lepton1PhiRec,"lepton1PhiRec/D");
     microTuple->Branch("lepton1PFiso",   &lepton1PFiso, "lepton1PFiso/D"); ///
-    
+    microTuple->Branch("lepton1mvaTrigV0eID",    &lepton1mvaTrigV0eID,    "lepton1mvaTrigV0eID/D");
+    microTuple->Branch("lepton1mvaNonTrigV0eID", &lepton1mvaNonTrigV0eID, "lepton1mvaNonTrigV0eID/D");
+
     microTuple->Branch("lepton2PdgId",   &lepton2PdgId, "lepton2PdgId/I");
     microTuple->Branch("lepton2IsTight", &lepton2IsTight,"lepton2IsTight/I");
     microTuple->Branch("lepton2PtGen",   &lepton2PtGen, "lepton2PtGen/D");
@@ -353,6 +355,8 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("lepton2EtaRec",  &lepton2EtaRec,"lepton2EtaRec/D");
     microTuple->Branch("lepton2PhiRec",  &lepton2PhiRec,"lepton2PhiRec/D");
     microTuple->Branch("lepton2PFiso",   &lepton2PFiso, "lepton2PFiso/D"); ///
+    microTuple->Branch("lepton2mvaTrigV0eID",    &lepton2mvaTrigV0eID,    "lepton2mvaTrigV0eID/D");
+    microTuple->Branch("lepton2mvaNonTrigV0eID", &lepton2mvaNonTrigV0eID, "lepton2mvaNonTrigV0eID/D");
 
     microTuple->Branch("lepton3PdgId",   &lepton3PdgId, "lepton3PdgId/I");
     microTuple->Branch("lepton3IsTight", &lepton3IsTight,"lepton3IsTight/I");
@@ -363,6 +367,8 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("lepton3EtaRec",  &lepton3EtaRec,"lepton3EtaRec/D");
     microTuple->Branch("lepton3PhiRec",  &lepton3PhiRec,"lepton3PhiRec/D");
     microTuple->Branch("lepton3PFiso",   &lepton3PFiso, "lepton3PFiso/D"); ///
+    microTuple->Branch("lepton3mvaTrigV0eID",    &lepton3mvaTrigV0eID,    "lepton3mvaTrigV0eID/D");
+    microTuple->Branch("lepton3mvaNonTrigV0eID", &lepton3mvaNonTrigV0eID, "lepton3mvaNonTrigV0eID/D");
 
     microTuple->Branch("neutrino1PdgId",  &neutrino1PdgId,  "neutrino1PdgId/I");
     microTuple->Branch("neutrino1PtGen",  &neutrino1PtGen,  "neutrino1PtGen/D");
@@ -634,9 +640,13 @@ void Analysis::doMicroNtuple() {
               }
         }
 
+        lepton1mvaTrigV0eID = -10;  lepton1mvaNonTrigV0eID = -10;
+        lepton2mvaTrigV0eID = -10;  lepton2mvaNonTrigV0eID = -10;
+        lepton3mvaTrigV0eID = -10;  lepton3mvaNonTrigV0eID = -10;
 ///        ElectronCollection electrons = tPlusXCandidates.GoodPFIsolatedElectrons();
 ///        ElectronCollection electrons = tPlusXCandidates.QCDElectrons();
-        ElectronCollection electrons = tPlusXCandidates.LooseElectrons();
+        ElectronCollection electrons = tPlusXCandidates.Electrons();
+///        ElectronCollection electrons = tPlusXCandidates.LooseElectrons();
 ///        MuonCollection     muons     = tPlusXCandidates.TightMuons();
 ///        MuonCollection     muons     = tPlusXCandidates.LooseMuons();
         for(unsigned int index = 0; index < electrons.size(); ++index) {
@@ -649,6 +659,10 @@ void Analysis::doMicroNtuple() {
                   lepton2PhiRec = lepton1PhiRec;
                   lepton2PFiso  = lepton1PFiso;
                   lepton2IsTight= lepton1IsTight;
+
+                  lepton2mvaTrigV0eID    = lepton1mvaTrigV0eID;
+                  lepton2mvaNonTrigV0eID = lepton1mvaNonTrigV0eID;
+
                   lepton1PtRec  = lepton->pt();
                   lepton1EtaRec = lepton->eta();
                   lepton1PhiRec = lepton->phi();
@@ -656,6 +670,9 @@ void Analysis::doMicroNtuple() {
                   lepton1PFiso  = lepton->pfIsolationAeff();
 ///                  lepton1IsTight = ( lepton->isTight() && lepton->isPFIsolated() ); 
                   lepton1IsTight = ( lepton->isGood() && lepton->isPFIsolated() ); 
+
+                  lepton1mvaTrigV0eID    = lepton->mvaTrigV0eID();
+                  lepton1mvaNonTrigV0eID = lepton->mvaNonTrigV0eID();
               } else {
                 if( lepton2PtRec  < lepton->pt() ){
                     lepton3PtRec  = lepton2PtRec;
@@ -663,6 +680,10 @@ void Analysis::doMicroNtuple() {
                     lepton3PhiRec = lepton2PhiRec;
                     lepton3PFiso  = lepton2PFiso;
                     lepton3IsTight= lepton2IsTight;
+
+                    lepton3mvaTrigV0eID    = lepton2mvaTrigV0eID;
+                    lepton3mvaNonTrigV0eID = lepton2mvaNonTrigV0eID;
+
                     lepton2PtRec  = lepton->pt();
                     lepton2EtaRec = lepton->eta();
                     lepton2PhiRec = lepton->phi();
@@ -670,6 +691,9 @@ void Analysis::doMicroNtuple() {
                     lepton2PFiso  = lepton->pfIsolationAeff();
 ///                    lepton2IsTight = ( lepton->isTight() && lepton->isPFIsolated() ); 
                     lepton2IsTight = ( lepton->isGood() && lepton->isPFIsolated() ); 
+
+                    lepton2mvaTrigV0eID    = lepton->mvaTrigV0eID();
+                    lepton2mvaNonTrigV0eID = lepton->mvaNonTrigV0eID();
                  } else {
                     if( lepton3PtRec  < lepton->pt() ){
                         lepton3PtRec  = lepton->pt();
@@ -679,6 +703,9 @@ void Analysis::doMicroNtuple() {
                         lepton3PFiso  = lepton->pfIsolationAeff();
 ///                        lepton3IsTight = ( lepton->isTight() && lepton->isPFIsolated() ); 
                         lepton3IsTight = ( lepton->isGood() && lepton->isPFIsolated() ); 
+
+                        lepton3mvaTrigV0eID    = lepton->mvaTrigV0eID();
+                        lepton3mvaNonTrigV0eID = lepton->mvaNonTrigV0eID();
                     }
                  }
               }

@@ -169,14 +169,17 @@ private:
     double lepton1PtGen, lepton1EtaGen, lepton1PhiGen;
     double lepton1PtRec, lepton1EtaRec, lepton1PhiRec;
     double lepton1PFiso;
+    double lepton1mvaTrigV0eID, lepton1mvaNonTrigV0eID;
     int    lepton2PdgId, lepton2IsTight;
     double lepton2PtGen, lepton2EtaGen, lepton2PhiGen;
     double lepton2PtRec, lepton2EtaRec, lepton2PhiRec;
     double lepton2PFiso;
+    double lepton2mvaTrigV0eID, lepton2mvaNonTrigV0eID;
     int    lepton3PdgId, lepton3IsTight;
     double lepton3PtGen, lepton3EtaGen, lepton3PhiGen;
     double lepton3PtRec, lepton3EtaRec, lepton3PhiRec;
     double lepton3PFiso;
+    double lepton3mvaTrigV0eID, lepton3mvaNonTrigV0eID;
     int    neutrino1PdgId, neutrino2PdgId;
     double neutrino1PtGen, neutrino1EtaGen, neutrino1PhiGen;
     double neutrino2PtGen, neutrino2EtaGen, neutrino2PhiGen;

@@ -1,12 +1,13 @@
 universe   = vanilla
 Executable = run.sh
 Should_Transfer_Files   = NO
-Arguments = "1 250"
-Output  = tp4mu_1_250.out
-Error   = tp4mu_1_250.err
-Log     = tp4mu_1_250.log
+Arguments = "1 BTAG MET PROC VAR"
+Output  = t1_BTAG_MET_PROC.txt
+Error   = t1_BTAG_MET_PROC.err
+Log     = t1_BTAG_MET_PROC.log
 remove_kill_sig = 2
 +IsLocalJob  = true
 Requirements = IsLocalSlot && Memory > 1024 && OpSys == "LINUX" && (Arch != "DUMMY")
+Rank = (machine == "compute-0-0.local") || (machine == "compute-0-1.local") || (machine == "compute-0-2.local")  || (machine == "compute-0-3.local") || (machine == "compute-0-4.local") || (machine == "compute-0-5.local")  || (machine == "compute-0-6.local")  || (machine == "compute-0-7.local")  || (machine == "compute-0-8.local") || (machine == "compute-0-9.local") || (machine == "compute-0-10.local") || (machine == "compute-0-11.local") || (machine == "compute-0-12.local") || (machine == "compute-0-13.local") || (machine == "compute-0-15.local") || (machine == "compute-0-16.local") || (machine == "compute-0-17.local") || (machine == "compute-0-18.local")
 Queue 1
 

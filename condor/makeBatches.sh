@@ -29,12 +29,6 @@ zj="ZJ1 ZJ2 ZJ3 ZJ4 ZJ5 ZJ6 ZJ7 ZJ8 ZJ9 ZJ10 ZJ11 ZJ12 ZJ13 ZJ14 ZJ15 ZJ16"
 vv="WW1 WW2 WW3 WW4 WW5 WZ1 WZ2 WZ3 WZ4 WZ5 ZZ1 ZZ2 ZZ3 ZZ4 ZZ5"
 top="T1 T2 T3 T4 T5 T6"
 
-#processes="$tt $wj $w1j $w2j $w3j $w4j $zn $top $vv"
-#processes="$muA $muB $muC $muD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
-#processes="$eA $eB $eC $eD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
-#processes="C2 C3 C4 C5 C6 C7 C8 C9 C30 C31 C32 C33 C34 D10 D11 D12 D13 D14 D15 D16 D17 D18 D19"
-#processes="$metA $metB $metC $metD $tt $wj $w1j $w2j $w3j $w4j $zn $top $vv"
-
 w3jsu="W3Jsu1 W3Jsu2 W3Jsu3 W3Jsu4"
 w3jsd="W3Jsd1 W3Jsd2 W3Jsd3 W3Jsd4"
 w3jmu="W3Jmu1 W3Jmu2 W3Jmu3 W3Jmu4 W3Jmu5"
@@ -43,10 +37,18 @@ w4jsu="W4Jsu1 W4Jsu2 W4Jsu3 W4Jsu4 W4Jsu5 W4Jsu6"
 w4jsd="W4Jsd1 W4Jsd2 W4Jsd3 W4Jsd4 W4Jsd5"
 w4jmu="W4Jmu1 W4Jmu2 W4Jmu3 W4Jmu4"
 w4jmd="W4Jmd1 W4Jmd2 W4Jmd3 W4Jmd4 W4Jmd5"
+
+#processes="$tt $wj $w1j $w2j $w3j $w4j $zn $top $vv"
+#processes="$muA $muB $muC $muD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
+#processes="$eA $eB $eC $eD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
+#processes="C2 C3 C4 C5 C6 C7 C8 C9 C30 C31 C32 C33 C34 D10 D11 D12 D13 D14 D15 D16 D17 D18 D19"
+#processes="$metA $metB $metC $metD $tt $wj $w1j $w2j $w3j $w4j $zn $top $vv"
 #processes="$w3jsu $w3jsd $w3jmu $w3jmd $w4jsu $w4jsd $w4jmu $w4jmd"
-processes="TTlh1 TTlh2 TTlh3 TTlh4 TTlh5 TTlh6 TTlh7"
+#processes="TTlh1 TTlh2 TTlh3 TTlh4 TTlh5 TTlh6 TTlh7"
+
+processes="$muA $muB $muC $muD"
 
 for s in $processes; do
-   arguments="-sd -d$s -o/data_tmp/users/kkotov/2013.10.30/"
-   cat batch.jdf | sed -e "s|ARGS|$arguments|g" -e "s|OUT|$s|g" -e "s|ERR|$s|g" -e "s|LOG|$s|g" > tmp/batch$s""met.jdf
+   arguments="-sm -d$s -o/data_tmp/users/kkotov/2013.11.04/"
+   cat batch.jdf | sed -e "s|ARGS|$arguments|g" -e "s|OUT|$s|g" -e "s|ERR|$s|g" -e "s|LOG|$s|g" > tmp/batch$s""mu.jdf
 done;
