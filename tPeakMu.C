@@ -358,7 +358,7 @@ if( process==-1 || process==E )
 micro->AddFile("/data/users/kkotov/2013.10.01/cleaning01/micro_MET2012E_metSel.root");
 */
 //double lumiScale = (0.802 + 4.403 + 6.388 + 7.248)/5.;
-double lumiScale = ( 19.7 )/5.;
+double lumiScale = ( 19.6 )/5.;
 
 double scaler2012A      = 1;
 double scaler2012B      = 1;
@@ -389,10 +389,13 @@ double lepton1PhiRec, lepton2PhiRec, lepton3PhiRec;
 int    lepton1IsTight, lepton2IsTight, lepton3IsTight;
 
 double t1PtGen, t2PtGen;
-if(process==TTJets){
-micro->SetBranchAddress("t1PtGen",&t1PtGen);
-micro->SetBranchAddress("t2PtGen",&t2PtGen);
-}
+double thPtRec, thEtaRec, thPhiRec;
+micro->SetBranchAddress("t1PtGen", &t1PtGen);
+micro->SetBranchAddress("t2PtGen", &t2PtGen);
+micro->SetBranchAddress("thMrec",  &thMrec);
+micro->SetBranchAddress("thPtRec", &thPtRec);
+micro->SetBranchAddress("thEtaRec",&thEtaRec);
+micro->SetBranchAddress("thPhiRec",&thPhiRec);
 
 micro->SetBranchAddress("lepton1PtRec",&lepton1PtRec);
 micro->SetBranchAddress("lepton2PtRec",&lepton2PtRec);
@@ -497,6 +500,14 @@ TH1F *metPhiZJ = new TH1F("metPhiZJ", "",nBinsMETphi, leftMETphi, rightMETphi);
 TH1F *metPhiT  = new TH1F("metPhiT",  "",nBinsMETphi, leftMETphi, rightMETphi);
 TH1F *metPhiVV = new TH1F("metPhiVV", "",nBinsMETphi, leftMETphi, rightMETphi);
 TH1F *metPhiQCD= new TH1F("metPhiQCD","",nBinsMETphi, leftMETphi, rightMETphi);
+
+TH1F *thPtAB = new TH1F("thPtAB", "",nBinsPt, leftPt, rightPt);
+TH1F *thPtTT = new TH1F("thPtTT", "",nBinsPt, leftPt, rightPt);
+TH1F *thPtWJ = new TH1F("thPtWJ", "",nBinsPt, leftPt, rightPt);
+TH1F *thPtZJ = new TH1F("thPtZJ", "",nBinsPt, leftPt, rightPt);
+TH1F *thPtT  = new TH1F("thPtT",  "",nBinsPt, leftPt, rightPt);
+TH1F *thPtVV = new TH1F("thPtVV", "",nBinsPt, leftPt, rightPt);
+TH1F *thPtQCD= new TH1F("thPtQCD","",nBinsPt, leftPt, rightPt);
 
 TH1F *l1PtAB = new TH1F("l1PtAB", "",nBinsPt, leftPt, rightPt);
 TH1F *l1PtTT = new TH1F("l1PtTT", "",nBinsPt, leftPt, rightPt);
@@ -667,7 +678,7 @@ for(int scenario=3; scenario<5; scenario++)
      topMassSig2p1[scenario-3][1][point] = new TH1F(name,"",nBinsM, leftM, rightM);
   }
 
-TH1F *triJetMass=0, *topMass=0, *topMass2p1=0, *met=0, *j1Pt=0, *j2Pt=0, *j3Pt=0, *j1Eta=0, *j2Eta=0, *j3Eta=0, *j1Phi=0, *j2Phi=0, *j3Phi=0, *j12Phi=0, *metPhi=0, *l1Pt=0, *l1Eta=0, *l1Phi=0, *lmdPhi=0, *jldPhi=0, *jmdPhi=0;
+TH1F *triJetMass=0, *topMass=0, *topMass2p1=0, *met=0, *j1Pt=0, *j2Pt=0, *j3Pt=0, *j1Eta=0, *j2Eta=0, *j3Eta=0, *j1Phi=0, *j2Phi=0, *j3Phi=0, *j12Phi=0, *metPhi=0, *l1Pt=0, *l1Eta=0, *l1Phi=0, *lmdPhi=0, *jldPhi=0, *jmdPhi=0, *thPt=0;
 
 TH2F *lmPt=0;
 TH1F *lmdPt=0;
@@ -697,6 +708,7 @@ if(type==74) type = TTJets; // BN_TTJets_FullLeptMGDecays,
 if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
    switch ( type ) {
      case Data:   triJetMass = triJetMassAB; topMass = topMassAB; topMass2p1 = topMassAB2p1;
+                  thPt  = thPtAB;
                   met   = metAB;   metPhi= metPhiAB; lmPt = lmPtAB; lmdPt = lmdPtAB;
                   j1Pt  = j1PtAB;  j2Pt  = j2PtAB;  j3Pt  = j3PtAB;
                   j1Eta = j1EtaAB; j2Eta = j2EtaAB; j3Eta = j3EtaAB;
@@ -705,6 +717,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiAB;lmdPhi= lmdPhiAB;jldPhi= jldPhiAB; jmdPhi = jmdPhiAB;
                   if( run<193752 ) weight *= scaler2012A; else weight *= scaler2012B; break;
      case TTJets: triJetMass = triJetMassTT; topMass = topMassTT; topMass2p1 = topMassTT2p1; weight *= scalerTTJets; 
+                  thPt  = thPtTT;
                   met   = metTT;   metPhi= metPhiTT; lmPt = lmPtTT; lmdPt = lmdPtTT;
                   j1Pt  = j1PtTT;  j2Pt  = j2PtTT;  j3Pt  = j3PtTT;
                   j1Eta = j1EtaTT; j2Eta = j2EtaTT; j3Eta = j3EtaTT;
@@ -713,6 +726,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiTT;lmdPhi= lmdPhiTT;jldPhi= jldPhiTT; jmdPhi = jmdPhiTT;
      break;
      case WJets:  triJetMass = triJetMassWJ; topMass = topMassWJ; topMass2p1 = topMassWJ2p1; weight *= scalerWJetsToLNu;
+                  thPt  = thPtWJ;
                   met   = metWJ;   metPhi= metPhiWJ; lmPt = lmPtWJ; lmdPt = lmdPtWJ;
                   j1Pt  = j1PtWJ;  j2Pt  = j2PtWJ;  j3Pt  = j3PtWJ;
                   j1Eta = j1EtaWJ; j2Eta = j2EtaWJ; j3Eta = j3EtaWJ;
@@ -721,6 +735,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiWJ;lmdPhi= lmdPhiWJ;jldPhi= jldPhiWJ; jmdPhi = jmdPhiWJ;
      break;
      case W1J:    triJetMass = triJetMassWJ; topMass = topMassWJ; topMass2p1 = topMassWJ2p1; weight *= scalerWJetsToLNu;
+                  thPt  = thPtWJ;
                   met   = metWJ;   metPhi= metPhiWJ; lmPt = lmPtWJ; lmdPt = lmdPtWJ;
                   j1Pt  = j1PtWJ;  j2Pt  = j2PtWJ;  j3Pt  = j3PtWJ;
                   j1Eta = j1EtaWJ; j2Eta = j2EtaWJ; j3Eta = j3EtaWJ;
@@ -729,6 +744,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiWJ;lmdPhi= lmdPhiWJ;jldPhi= jldPhiWJ; jmdPhi = jmdPhiWJ;
      break;
      case W2J:    triJetMass = triJetMassWJ; topMass = topMassWJ; topMass2p1 = topMassWJ2p1; weight *= scalerWJetsToLNu;
+                  thPt  = thPtWJ;
                   met   = metWJ;   metPhi= metPhiWJ; lmPt = lmPtWJ; lmdPt = lmdPtWJ;
                   j1Pt  = j1PtWJ;  j2Pt  = j2PtWJ;  j3Pt  = j3PtWJ;
                   j1Eta = j1EtaWJ; j2Eta = j2EtaWJ; j3Eta = j3EtaWJ;
@@ -737,6 +753,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiWJ;lmdPhi= lmdPhiWJ;jldPhi= jldPhiWJ; jmdPhi = jmdPhiWJ;
      break;
      case W3J:    triJetMass = triJetMassWJ; topMass = topMassWJ; topMass2p1 = topMassWJ2p1; weight *= scalerWJetsToLNu;
+                  thPt  = thPtWJ;
                   met   = metWJ;   metPhi= metPhiWJ; lmPt = lmPtWJ; lmdPt = lmdPtWJ;
                   j1Pt  = j1PtWJ;  j2Pt  = j2PtWJ;  j3Pt  = j3PtWJ;
                   j1Eta = j1EtaWJ, j2Eta = j2EtaWJ, j3Eta = j3EtaWJ;
@@ -745,6 +762,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiWJ;lmdPhi= lmdPhiWJ;jldPhi= jldPhiWJ; jmdPhi = jmdPhiWJ;
      break;
      case W4J:    triJetMass = triJetMassWJ; topMass = topMassWJ; topMass2p1 = topMassWJ2p1; weight *= scalerWJetsToLNu;
+                  thPt  = thPtWJ;
                   met   = metWJ;   metPhi= metPhiWJ; lmPt = lmPtWJ; lmdPt = lmdPtWJ;
                   j1Pt  = j1PtWJ;  j2Pt  = j2PtWJ;  j3Pt  = j3PtWJ;
                   j1Eta = j1EtaWJ; j2Eta = j2EtaWJ; j3Eta = j3EtaWJ;
@@ -753,6 +771,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiWJ;lmdPhi= lmdPhiWJ;jldPhi= jldPhiWJ; jmdPhi = jmdPhiWJ;
      break;
      case ZJets:  triJetMass = triJetMassZJ; topMass = topMassZJ; topMass2p1 = topMassZJ2p1; weight *= scalerZJetsToLL;
+                  thPt  = thPtZJ;
                   met   = metZJ;   metPhi= metPhiZJ; lmPt = lmPtZJ; lmdPt = lmdPtZJ;
                   j1Pt  = j1PtZJ;  j2Pt  = j2PtZJ;  j3Pt  = j3PtZJ;
                   j1Eta = j1EtaZJ; j2Eta = j2EtaZJ; j3Eta = j3EtaZJ;
@@ -761,6 +780,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiZJ;lmdPhi= lmdPhiZJ;jldPhi= jldPhiZJ; jmdPhi = jmdPhiZJ;
      break;
      case WW:     triJetMass = triJetMassVV; topMass = topMassVV; topMass2p1 = topMassVV2p1; weight *= scalerWW;
+                  thPt  = thPtVV;
                   met   = metVV;   metPhi= metPhiVV; lmPt = lmPtVV; lmdPt = lmdPtVV;
                   j1Pt  = j1PtVV;  j2Pt  = j2PtVV;  j3Pt  = j3PtVV;
                   j1Eta = j1EtaVV; j2Eta = j2EtaVV; j3Eta = j3EtaVV;
@@ -769,6 +789,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiVV;lmdPhi= lmdPhiVV;jldPhi= jldPhiVV; jmdPhi = jmdPhiVV;
      break;
      case WZ:     triJetMass = triJetMassVV; topMass = topMassVV; topMass2p1 = topMassVV2p1; weight *= scalerWZ;
+                  thPt  = thPtVV;
                   met   = metVV;   metPhi= metPhiVV; lmPt = lmPtVV; lmdPt = lmdPtVV;
                   j1Pt  = j1PtVV;  j2Pt  = j2PtVV;  j3Pt  = j3PtVV;
                   j1Eta = j1EtaVV; j2Eta = j2EtaVV; j3Eta = j3EtaVV;
@@ -777,6 +798,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
                   j12Phi= j12PhiVV;lmdPhi= lmdPhiVV;jldPhi= jldPhiVV; jmdPhi = jmdPhiVV;
      break;
      case ZZ:     triJetMass = triJetMassVV; topMass = topMassVV; topMass2p1 = topMassVV2p1; weight *= scalerZZ;
+                  thPt  = thPtVV;
                   met   = metVV;   metPhi= metPhiVV; lmPt = lmPtVV; lmdPt = lmdPtVV;
                   j1Pt  = j1PtVV;  j2Pt  = j2PtVV;  j3Pt  = j3PtVV;
                   j1Eta = j1EtaVV; j2Eta = j2EtaVV; j3Eta = j3EtaVV;
@@ -789,6 +811,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
        topMass    = 0;
        topMass2p1 = 0;
        if( type>=Znunu && type<QCD ){
+           thPt  = thPtZJ;
            triJetMass = triJetMassZJ; topMass = topMassZJ; topMass2p1 = topMassZJ2p1;  weight *= scalerZJetsToNuNu;
            met   = metZJ;   metPhi= metPhiZJ; lmPt = lmPtZJ; lmdPt = lmdPtZJ;
            j1Pt  = j1PtZJ;  j2Pt  = j2PtZJ;  j3Pt  = j3PtZJ;
@@ -798,6 +821,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
            j12Phi= j12PhiZJ;lmdPhi= lmdPhiZJ;jldPhi= jldPhiZJ; jmdPhi = jmdPhiZJ;
        }
        if( type>=QCD   && type<Top ){
+           thPt  = thPtQCD;
            triJetMass = triJetMassQCD;topMass = topMassQCD;topMass2p1 = topMassQCD2p1; weight *= scalerQCD;
            met   = metQCD;   metPhi= metPhiQCD; lmPt = lmPtQCD; lmdPt = lmdPtQCD;
            j1Pt  = j1PtQCD;  j2Pt  = j2PtQCD;  j3Pt  = j3PtQCD;
@@ -807,6 +831,7 @@ if(type<27 || type==W1J || type==W2J || type==W3J || type==W4J)
            j12Phi= j12PhiQCD;lmdPhi= lmdPhiQCD;jldPhi= jldPhiQCD; jmdPhi = jmdPhiQCD;
        }
        if( type>=Top   && type<WW  ){
+           thPt  = thPtT;
            triJetMass = triJetMassT;  topMass = topMassT;  topMass2p1 = topMassT2p1;   weight *= scalerSingleTop;
            met   = metT;   metPhi= metPhiT; lmPt = lmPtT; lmdPt = lmdPtT;
            j1Pt  = j1PtT;  j2Pt  = j2PtT;  j3Pt  = j3PtT;
@@ -924,6 +949,7 @@ if( type==TTJets ){
              j2Phi->Fill(subleadJetPhiRec, weight);
              j3Phi->Fill(  thirdJetPhiRec, weight);
              l1Phi->Fill(   lepton1PhiRec, weight);
+             thPt->Fill( thPtRec, weight );
              met->Fill( metPtRec, weight );
              metPhi->Fill( metPhiRec, weight );
              dPhi = abs(leadingJetPhiRec-lepton1PhiRec);
@@ -1015,6 +1041,7 @@ topMassAB->Write();
 topMassAB2p1->Write();
 metAB->Write();
 metPhiAB->Write();
+thPtAB->Write();
 j1PtAB->Write();
 j2PtAB->Write();
 j3PtAB->Write();
@@ -1041,6 +1068,7 @@ topMassTT->Write();
 topMassTT2p1->Write();
 metTT->Write();
 metPhiTT->Write();
+thPtTT->Write();
 j1PtTT->Write();
 j2PtTT->Write();
 j3PtTT->Write();
@@ -1067,6 +1095,7 @@ topMassWJ->Write();
 topMassWJ2p1->Write();
 metWJ->Write();
 metPhiWJ->Write();
+thPtWJ->Write();
 j1PtWJ->Write();
 j2PtWJ->Write();
 j3PtWJ->Write();
@@ -1093,6 +1122,7 @@ topMassZJ->Write();
 topMassZJ2p1->Write();
 metZJ->Write();
 metPhiZJ->Write();
+thPtZJ->Write();
 j1PtZJ->Write();
 j2PtZJ->Write();
 j3PtZJ->Write();
@@ -1117,6 +1147,7 @@ if( process==-1 || process==Top ){
 triJetMassT->Write();
 topMassT->Write();
 topMassT2p1->Write();
+thPtT->Write();
 metT->Write();
 metPhiT->Write();
 j1PtT->Write();
@@ -1145,6 +1176,7 @@ topMassVV->Write();
 topMassVV2p1->Write();
 metVV->Write();
 metPhiVV->Write();
+thPtVV->Write();
 j1PtVV->Write();
 j2PtVV->Write();
 j3PtVV->Write();
@@ -1171,6 +1203,7 @@ topMassQCD->Write();
 topMassQCD2p1->Write();
 metQCD->Write();
 metPhiQCD->Write();
+thPtQCD->Write();
 j1PtQCD->Write();
 j2PtQCD->Write();
 j3PtQCD->Write();

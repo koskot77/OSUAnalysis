@@ -645,8 +645,8 @@ void Analysis::doMicroNtuple() {
         lepton3mvaTrigV0eID = -10;  lepton3mvaNonTrigV0eID = -10;
 ///        ElectronCollection electrons = tPlusXCandidates.GoodPFIsolatedElectrons();
 ///        ElectronCollection electrons = tPlusXCandidates.QCDElectrons();
-        ElectronCollection electrons = tPlusXCandidates.Electrons();
-///        ElectronCollection electrons = tPlusXCandidates.LooseElectrons();
+///        ElectronCollection electrons = tPlusXCandidates.Electrons();
+        ElectronCollection electrons = tPlusXCandidates.LooseElectrons();
 ///        MuonCollection     muons     = tPlusXCandidates.TightMuons();
 ///        MuonCollection     muons     = tPlusXCandidates.LooseMuons();
         for(unsigned int index = 0; index < electrons.size(); ++index) {

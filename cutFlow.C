@@ -39,6 +39,7 @@ tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT10_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT11_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT12_metSel.root");
 */
+/*
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh1_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh2_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh3_metSel.root");
@@ -60,6 +61,7 @@ tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll3_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll4_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll5_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll6_metSel.root");
+*/
 /*
 top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T1_metSel.root");
 top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T2_metSel.root");
@@ -124,7 +126,6 @@ zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ4_metSel.root");
 zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ5_metSel.root");
 */
 /*
-data->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_MET2012A_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B1_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B2_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B3_metSel.root");
@@ -144,6 +145,8 @@ data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D4_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D5_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D6_metSel.root");
 */
+
+data->AddFile("microOld_MET2012B_metSel.root");
 
 const char *cut[] = {
 "Stage -1: Total expected             ",
@@ -192,42 +195,42 @@ for(int sel=-1; sel<27; sel++){ //22
   char buff[512];
   switch( sel ){
     case -1 : sprintf(buff,"weight"); break;
-    case  0 : sprintf(buff,"((selection&1)==1)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  1 : sprintf(buff,"((selection&3)==3)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  2 : sprintf(buff,"((selection&7)==7)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  3 : sprintf(buff,"((selection&15)==15)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  4 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+    case  0 : sprintf(buff,"((selection&1)==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  1 : sprintf(buff,"((selection&3)==3)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  2 : sprintf(buff,"((selection&7)==7)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  3 : sprintf(buff,"((selection&15)==15)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  4 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case  5 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  6 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  7 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+    case  5 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  6 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  7 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
     case  8 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0 && "
-                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case  9 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 10 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==1)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 11 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==2)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  9 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 10 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 11 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case 12 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+    case 12 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
     case 13 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0 && "
-                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 14 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 15 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==1)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 16 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==2)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 14 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 15 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 16 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case 17 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+    case 17 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
     case 18 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0 && "
-                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 19 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 20 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==1)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 21 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==2)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 19 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 20 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 21 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case 22 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+    case 22 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
     case 23 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0 && "
-                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 24 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 25 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==1)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
-    case 26 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==2)*weight*sqrt(exp(1*(0.156-0.00137*t1PtGen))*exp(1*(0.156-0.00137*t2PtGen)))"); break;
+                           "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 24 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 25 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 26 : sprintf(buff,"((selection&15)==15 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
     default : exit(0); break;
   }
@@ -247,10 +250,10 @@ for(int sel=-1; sel<27; sel++){ //22
   zz->Draw("type>>tmp",buff);
   double zzYield  = tmp->Integral() * lumiScale;
   double vvYield  = wwYield + wzYield + zzYield;
-//  data->Draw("type>>tmp",buff);
-  double dataYield  = 0;//tmp->Integral();
+  data->Draw("type>>tmp",buff);
+  double dataYield  = tmp->Integral();
 
-  cout<<cut[sel+1]<<" & "<<(ttYield)<<" & "<<long(zjYield+0.5)<<" & "<<long(wjYield+0.5)<<" & "<<long(topYield+0.5)<<" & "<<long(vvYield+0.5)<<" & "<<long(ttYield+zjYield+wjYield+topYield+vvYield+0.5)<<"  \\\\ "<<long(dataYield+0.5)<<endl;
+  cout<<cut[sel+1]<<" & "<<(ttYield)<<" & "<<long(zjYield+0.5)<<" & "<<long(wjYield+0.5)<<" & "<<long(topYield+0.5)<<" & "<<long(vvYield+0.5)<<" & "<<long(ttYield+zjYield+wjYield+topYield+vvYield+0.5)<<"  \\\\ "<<dataYield<<endl;
 }
 
 }

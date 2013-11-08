@@ -180,7 +180,7 @@ bool Electron::isLoose() const {
     if (electronIDUsed == eIDMethod::CIC)
        passesID = CIC_ElectronID(1);	// bitnum == 1 is LooseMC
     if (electronIDUsed == eIDMethod::MVA)
-       passesID = mvaTrigV0eID() > 0;   // 
+       passesID = mvaNonTrigV0eID() > 0;   // 
     else passesID = VBTF_W95_ElectronID();
     return passesEt && passesEta && isolated && notInCrack && passesID;
 
@@ -203,7 +203,7 @@ bool Electron::isGood(const float unused) const {
     if (electronIDUsed == eIDMethod::CIC)
          passesID = CIC_ElectronID();
     if (electronIDUsed == eIDMethod::MVA)
-         passesID = mvaTrigV0eID() > 0;
+         passesID = mvaNonTrigV0eID() > 0;
     if( electronIDUsed == eIDMethod::VBTF )
          passesID = VBTF_W70_ElectronID();
     return passesPt && passesEta && passesD0 && passesID && passesDistanceToPV;
