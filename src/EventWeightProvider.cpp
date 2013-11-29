@@ -39,6 +39,7 @@ boost::array<float, DataType::NUMBER_OF_DATA_TYPES> getXSections() {
     xsection[DataType::W3Jets] =  519;
     xsection[DataType::W4Jets] =  214;
     xsection[DataType::QCD_Pt15to3000] = 29981599700;
+//    xsection[DataType::QCD_Pt120to170] = 156293.3;
     xsection[DataType::QCD_Pt170to300] = 34138.15;
     xsection[DataType::QCD_Pt300to470] = 1759.549;
     xsection[DataType::QCD_Pt470to600] = 113.8791;
@@ -100,7 +101,7 @@ boost::array<float, DataType::NUMBER_OF_DATA_TYPES> getXSections() {
     xsection[DataType::S3_50_jets ] = 6.705;
     xsection[DataType::S3_100_jets] = 4.159;
     xsection[DataType::S3_150_jets] = 2.299;
-    xsection[DataType::S3_200_jets] = 1.412;
+    xsection[DataType::S3_200_jets] = 1.412; // 0.694
     xsection[DataType::S3_300_jets] = .6048;
     xsection[DataType::S3_500_jets] = .1463;
 
@@ -237,39 +238,39 @@ void EventWeightProvider::defineNumberOfProducedEvents() {
     numberOfElectronSkimEvents[DataType::QCD_Pt15to3000] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt15to3000] = 0;
 
-    numberOfProcessedEvents   [DataType::QCD_Pt170to300] = 5789546; // 5774205;
+    numberOfProcessedEvents   [DataType::QCD_Pt170to300] = 19874076; //5789546;
     numberOfPattplSkimEvents  [DataType::QCD_Pt170to300] = 0;
-    numberOfNtplSkimEvents    [DataType::QCD_Pt170to300] = 5789546; // 3712218;
+    numberOfNtplSkimEvents    [DataType::QCD_Pt170to300] = 19874076; //5789546;
     numberOfElectronSkimEvents[DataType::QCD_Pt170to300] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt170to300] = 0;
 
-    numberOfProcessedEvents   [DataType::QCD_Pt300to470] = 5874224; // 5372378;
+    numberOfProcessedEvents   [DataType::QCD_Pt300to470] = 19714327; //5874224;
     numberOfPattplSkimEvents  [DataType::QCD_Pt300to470] = 0;
-    numberOfNtplSkimEvents    [DataType::QCD_Pt300to470] = 5874224; // 5370111;
+    numberOfNtplSkimEvents    [DataType::QCD_Pt300to470] = 19714327; //5874224;
     numberOfElectronSkimEvents[DataType::QCD_Pt300to470] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt300to470] = 0;
 
-    numberOfProcessedEvents   [DataType::QCD_Pt470to600] = 3940513; // 5933477;
+    numberOfProcessedEvents   [DataType::QCD_Pt470to600] = 3942508; //3940513;
     numberOfPattplSkimEvents  [DataType::QCD_Pt470to600] = 0;
-    numberOfNtplSkimEvents    [DataType::QCD_Pt470to600] = 3940513; // 5926846;
+    numberOfNtplSkimEvents    [DataType::QCD_Pt470to600] = 3942508; //3940513;
     numberOfElectronSkimEvents[DataType::QCD_Pt470to600] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt470to600] = 0;
 
-    numberOfProcessedEvents   [DataType::QCD_Pt600to800] = 3940513;
+    numberOfProcessedEvents   [DataType::QCD_Pt600to800] = 3932576; //3940513;
     numberOfPattplSkimEvents  [DataType::QCD_Pt600to800] = 0;
-    numberOfNtplSkimEvents    [DataType::QCD_Pt600to800] = 3940513;
+    numberOfNtplSkimEvents    [DataType::QCD_Pt600to800] = 3932576; //3940513;
     numberOfElectronSkimEvents[DataType::QCD_Pt600to800] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt600to800] = 0;
 
-    numberOfProcessedEvents   [DataType::QCD_Pt800to1000] = 3921086;
+    numberOfProcessedEvents   [DataType::QCD_Pt800to1000] = 3928429; //3921086;
     numberOfPattplSkimEvents  [DataType::QCD_Pt800to1000] = 0;
-    numberOfNtplSkimEvents    [DataType::QCD_Pt800to1000] = 3921086;
+    numberOfNtplSkimEvents    [DataType::QCD_Pt800to1000] = 3928429; //3921086;
     numberOfElectronSkimEvents[DataType::QCD_Pt800to1000] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt800to1000] = 0;
 
-    numberOfProcessedEvents   [DataType::QCD_Pt1000to1400] = 1926436;
+    numberOfProcessedEvents   [DataType::QCD_Pt1000to1400] = 1919722; //1926436;
     numberOfPattplSkimEvents  [DataType::QCD_Pt1000to1400] = 0;
-    numberOfNtplSkimEvents    [DataType::QCD_Pt1000to1400] = 1926436;
+    numberOfNtplSkimEvents    [DataType::QCD_Pt1000to1400] = 1919722; //1926436;
     numberOfElectronSkimEvents[DataType::QCD_Pt1000to1400] = 0;
     numberOfMuonSkimEvents    [DataType::QCD_Pt1000to1400] = 0;
 
@@ -544,9 +545,9 @@ void EventWeightProvider::defineNumberOfProducedEvents() {
     numberOfElectronSkimEvents[DataType::S3_150_jets] = 0;
     numberOfMuonSkimEvents    [DataType::S3_150_jets] = 0;
 
-    numberOfProcessedEvents   [DataType::S3_200_jets] = 30845;
+    numberOfProcessedEvents   [DataType::S3_200_jets] = 30845; //15880
     numberOfPattplSkimEvents  [DataType::S3_200_jets] = 0;
-    numberOfNtplSkimEvents    [DataType::S3_200_jets] = 30845;
+    numberOfNtplSkimEvents    [DataType::S3_200_jets] = 30845; //15880
     numberOfElectronSkimEvents[DataType::S3_200_jets] = 0;
     numberOfMuonSkimEvents    [DataType::S3_200_jets] = 0;
 

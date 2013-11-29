@@ -174,6 +174,8 @@ int main(int argc, char **argv) {
           T   =12000, T1   =12001, T2   =12002, T3   =12003, T4   =12004, T5   =12005, T6   =12006, T7   =12007, T8   =12008, T9   =12009,
           T10 =12010, T11  =12011, T12  =12012, T13  =12013, T14  =12014, T15  =12015, T16  =12016, T17  =12017, T18  =12018, T19  =12019,
           T20 =12020, T21  =12021, T22  =12022, T23  =12023, T24  =12024, T25  =12025, T26  =12026, T27  =12027, T28  =12028, T29  =12029,
+          QCD_50_80  =13000, QCD_80_120 =14000, QCD_120_170 =15000, QCD_170_300  =16000, QCD_300_470=17000,
+          QCD_470_600=18000, QCD_600_800=19000, QCD_800_1000=20000, QCD_1000_1400=21000, QCD_1400_1800=22000,
           signals=100000,
           s3m0=130000, s3m50=130050, s3m100=130100, s3m150=130150, s3m200=130200, s3m300=130300, s3m400=130400, s3m500=130500, s3m600=130600,
           s4m0=140000, s4m50=140050, s4m100=140100, s4m150=140150, s4m200=140200, s4m300=140300, s4m400=140400, s4m500=140500, s4m600=140600,
@@ -314,6 +316,11 @@ int main(int argc, char **argv) {
     dataNames["T15"]=T15; dataNames["T16"]=T16; dataNames["T17"]=T17; dataNames["T18"]=T18; dataNames["T19"]=T19;
     dataNames["T20"]=T20; dataNames["T21"]=T21; dataNames["T22"]=T22; dataNames["T23"]=T23; dataNames["T24"]=T24;
     dataNames["T25"]=T25; dataNames["T26"]=T26; dataNames["T27"]=T27; dataNames["T28"]=T28; dataNames["T29"]=T29;
+
+
+    dataNames["QCD_50_80"]  =QCD_50_80;   dataNames["QCD_80_120"]  =QCD_80_120;   dataNames["QCD_120_170"]=QCD_120_170;
+    dataNames["QCD_170_300"]=QCD_170_300; dataNames["QCD_300_470"] =QCD_300_470;  dataNames["QCD_470_600"]=QCD_470_600;
+    dataNames["QCD_600_800"]=QCD_600_800; dataNames["QCD_800_1000"]=QCD_800_1000; dataNames["QCD_1000_1400"]=QCD_1000_1400;
 
     dataNames["signals"]=signals;
     dataNames["s3m0"]  =s3m0;   dataNames["s3m50"] =s3m50;  dataNames["s3m100"]=s3m100;  dataNames["s3m150"]=s3m150;

@@ -221,6 +221,7 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("leadingJetTCHE",  &leadingJetTCHE,  "leadingJetTCHE/D");
     microTuple->Branch("leadingJetTCHP",  &leadingJetTCHP,  "leadingJetTCHP/D");
     microTuple->Branch("leadingJetCSV",   &leadingJetCSV,   "leadingJetCSV/D");
+    microTuple->Branch("leadingJetFlavor",&leadingJetFlavor,"leadingJetFlavor/I");
 
 ///    microTuple->Branch("subleadJetPdgId", &subleadJetPdgId, "subleadJetPdgId/I");
 ///    microTuple->Branch("subleadJetIndGen",&subleadJetIndGen,"subleadJetIndGen/I");
@@ -233,6 +234,7 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("subleadJetTCHE",  &subleadJetTCHE,  "subleadJetTCHE/D");
     microTuple->Branch("subleadJetTCHP",  &subleadJetTCHP,  "subleadJetTCHP/D");
     microTuple->Branch("subleadJetCSV",   &subleadJetCSV,   "subleadJetCSV/D");
+    microTuple->Branch("subleadJetFlavor",&subleadJetFlavor,"subleadJetFlavor/I");
 
     microTuple->Branch("thirdJetPtRec",   &thirdJetPtRec,   "thirdJetPtRec/D");
     microTuple->Branch("thirdJetEtaRec",  &thirdJetEtaRec,  "thirdJetEtaRec/D");
@@ -240,6 +242,7 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("thirdJetTCHE",    &thirdJetTCHE,    "thirdJetTCHE/D");
     microTuple->Branch("thirdJetTCHP",    &thirdJetTCHP,    "thirdJetTCHP/D");
     microTuple->Branch("thirdJetCSV",     &thirdJetCSV,     "thirdJetCSV/D");
+    microTuple->Branch("thirdJetFlavor",  &thirdJetFlavor,  "thirdJetFlavor/I");
 
     microTuple->Branch("forthJetPtRec",   &forthJetPtRec,   "forthJetPtRec/D");
     microTuple->Branch("forthJetEtaRec",  &forthJetEtaRec,  "forthJetEtaRec/D");
@@ -247,6 +250,7 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("forthJetTCHE",    &forthJetTCHE,    "forthJetTCHE/D");
     microTuple->Branch("forthJetTCHP",    &forthJetTCHP,    "forthJetTCHP/D");
     microTuple->Branch("forthJetCSV",     &forthJetCSV,     "forthJetCSV/D");
+    microTuple->Branch("forthJetFlavor",  &forthJetFlavor,  "forthJetFlavor/I");
 
     microTuple->Branch("m3jets",         &m3jets,         "m3jets/D");
     microTuple->Branch("m3masslessJets", &m3masslessJets, "m3masslessJets/D");
@@ -260,6 +264,16 @@ if( BAT::NTupleEventReader::useLHAPDF )
     microTuple->Branch("thirdBJetPtRec",   &thirdBJetPtRec,   "thirdBJetPtRec/D");
     microTuple->Branch("thirdBJetEtaRec",  &thirdBJetEtaRec,  "thirdBJetEtaRec/D");
     microTuple->Branch("thirdBJetPhiRec",  &thirdBJetPhiRec,  "thirdBJetPhiRec/D");
+
+    microTuple->Branch("firstBJetPtGen",   &firstBJetPtGen,   "firstBJetPtGen/D");
+    microTuple->Branch("firstBJetEtaGen",  &firstBJetEtaGen,  "firstBJetEtaGen/D");
+    microTuple->Branch("firstBJetPhiGen",  &firstBJetPhiGen,  "firstBJetPhiGen/D");
+    microTuple->Branch("secondBJetPtGen",  &secondBJetPtGen,  "secondBJetPtGen/D");
+    microTuple->Branch("secondBJetEtaGen", &secondBJetEtaGen, "secondBJetEtaGen/D");
+    microTuple->Branch("secondBJetPhiGen", &secondBJetPhiGen, "secondBJetPhiGen/D");
+    microTuple->Branch("thirdBJetPtGen",   &thirdBJetPtGen,   "thirdBJetPtGen/D");
+    microTuple->Branch("thirdBJetEtaGen",  &thirdBJetEtaGen,  "thirdBJetEtaGen/D");
+    microTuple->Branch("thirdBJetPhiGen",  &thirdBJetPhiGen,  "thirdBJetPhiGen/D");
 
 ///    microTuple->Branch("freeJetPdgId",    &freeJetPdgId,   "freeJetPdgId/I");
 ///    microTuple->Branch("freeJetIndGen",   &freeJetIndGen,  "freeJetIndGen/I");
@@ -479,6 +493,7 @@ void Analysis::doMicroNtuple() {
                forthJetTCHE     = thirdJetTCHE;
                forthJetTCHP     = thirdJetTCHP;
                forthJetCSV      = thirdJetCSV;
+               forthJetFlavor   = thirdJetFlavor;
                thirdJetPtRec    = subleadJetPtRec;
                thirdJetEtaRec   = subleadJetEtaRec;
                thirdJetPhiRec   = subleadJetPhiRec;
@@ -486,6 +501,7 @@ void Analysis::doMicroNtuple() {
                thirdJetTCHP     = subleadJetTCHP;
                thirdJetCSV      = subleadJetCSV;
                thirdJetPointer  = subleadJetPointer;
+               thirdJetFlavor   = subleadJetFlavor;
                subleadJetPtRec  = leadingJetPtRec;
                subleadJetEtaRec = leadingJetEtaRec;
                subleadJetPhiRec = leadingJetPhiRec;
@@ -493,12 +509,14 @@ void Analysis::doMicroNtuple() {
                subleadJetTCHP   = leadingJetTCHP;
                subleadJetCSV    = leadingJetCSV;
                subleadJetPointer= leadingJetPointer;
+               subleadJetFlavor = leadingJetFlavor;
                leadingJetPtRec  = (*jet)->pt();
                leadingJetEtaRec = (*jet)->eta();
                leadingJetPhiRec = (*jet)->phi();
                leadingJetTCHE   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighEffBTag);
                leadingJetTCHP   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighPurBTag);
                leadingJetCSV    = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::CombinedSecondaryVertexBTag);
+               leadingJetFlavor = (*jet)->partonFlavour();
                leadingJetPointer= (*jet);
            } else {
                if( subleadJetPtRec  < (*jet)->pt() ){
@@ -508,6 +526,7 @@ void Analysis::doMicroNtuple() {
                    forthJetTCHE     = thirdJetTCHE;
                    forthJetTCHP     = thirdJetTCHP;
                    forthJetCSV      = thirdJetCSV;
+                   forthJetFlavor   = thirdJetFlavor;
                    thirdJetPtRec    = subleadJetPtRec;
                    thirdJetEtaRec   = subleadJetEtaRec;
                    thirdJetPhiRec   = subleadJetPhiRec;
@@ -515,12 +534,14 @@ void Analysis::doMicroNtuple() {
                    thirdJetTCHP     = subleadJetTCHP;
                    thirdJetCSV      = subleadJetCSV;
                    thirdJetPointer  = subleadJetPointer;
+                   thirdJetFlavor   = subleadJetFlavor;
                    subleadJetPtRec  = (*jet)->pt();
                    subleadJetEtaRec = (*jet)->eta();
                    subleadJetPhiRec = (*jet)->phi();
                    subleadJetTCHE   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighEffBTag);
                    subleadJetTCHP   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighPurBTag);
                    subleadJetCSV    = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::CombinedSecondaryVertexBTag);
+                   subleadJetFlavor = (*jet)->partonFlavour();
                    subleadJetPointer= (*jet);
                } else {
                    if( thirdJetPtRec  < (*jet)->pt() ){
@@ -530,12 +551,14 @@ void Analysis::doMicroNtuple() {
                        forthJetTCHE   = thirdJetTCHE;
                        forthJetTCHP   = thirdJetTCHP;
                        forthJetCSV    = thirdJetCSV;
+                       forthJetFlavor = thirdJetFlavor;
                        thirdJetPtRec  = (*jet)->pt();
                        thirdJetEtaRec = (*jet)->eta();
                        thirdJetPhiRec = (*jet)->phi();
                        thirdJetTCHE   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighEffBTag);
                        thirdJetTCHP   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighPurBTag);
                        thirdJetCSV    = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::CombinedSecondaryVertexBTag);
+                       thirdJetFlavor = (*jet)->partonFlavour();
                        thirdJetPointer= (*jet);
                    } else {
                        if( forthJetPtRec  < (*jet)->pt() ){
@@ -545,6 +568,7 @@ void Analysis::doMicroNtuple() {
                            forthJetTCHE   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighEffBTag);
                            forthJetTCHP   = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::TrackCountingHighPurBTag);
                            forthJetCSV    = (*jet)->getDiscriminatorForBtagType(BtagAlgorithm::CombinedSecondaryVertexBTag);
+                           forthJetFlavor = (*jet)->partonFlavour();
                        }
                    }
                }
@@ -808,6 +832,9 @@ void Analysis::doMicroNtuple() {
             jet1WhPtGen = -1;  // jet1
             jet2WhPtGen = -1;  // jet2
             bJetPtGen = -1;    // b
+            firstBJetPtGen = -1;
+            secondBJetPtGen = -1;
+            thirdBJetPtGen = -1;
             freeJetPtGen = -1; // radiation
             leadingJetPtGen = -1; // 
             nTausGen = 0;
@@ -906,6 +933,40 @@ void Analysis::doMicroNtuple() {
                    bJetPhiGen = particle->phi();
                    bJetPdgId  = particle->pdgId();
                    bJetIndGen = distance(MCParticleCollection::const_iterator(genParticles.begin()),pIter); 
+
+                   if( firstBJetPtGen < bJetPtGen ){
+                      thirdBJetPtGen   = secondBJetPtGen;
+                      thirdBJetEtaGen  = secondBJetEtaGen;
+                      thirdBJetPhiGen  = secondBJetPhiGen;
+                      thirdBJetPdgId   = secondBJetPdgId;
+                      secondBJetPtGen  = firstBJetPtGen;
+                      secondBJetEtaGen = firstBJetEtaGen;
+                      secondBJetPhiGen = firstBJetPhiGen;
+                      secondBJetPdgId  = firstBJetPdgId;
+                      firstBJetPtGen   = bJetPtGen;
+                      firstBJetEtaGen  = bJetEtaGen;
+                      firstBJetPhiGen  = bJetPhiGen;
+                      firstBJetPdgId   = bJetPdgId;
+                   } else {
+                      if( secondBJetPtGen < bJetPtGen ){
+                         thirdBJetPtGen   = secondBJetPtGen;
+                         thirdBJetEtaGen  = secondBJetEtaGen;
+                         thirdBJetPhiGen  = secondBJetPhiGen;
+                         thirdBJetPdgId   = secondBJetPdgId;
+                         secondBJetPtGen  = bJetPtGen;
+                         secondBJetEtaGen = bJetEtaGen;
+                         secondBJetPhiGen = bJetPhiGen;
+                         secondBJetPdgId  = bJetPdgId;
+                      } else {
+                         if( thirdBJetPtGen < bJetPtGen ){
+                            thirdBJetPtGen   = bJetPtGen;
+                            thirdBJetEtaGen  = bJetEtaGen;
+                            thirdBJetPhiGen  = bJetPhiGen;
+                            thirdBJetPdgId   = bJetPdgId;
+                         }
+                      }
+                   }
+
                 }
 
                 // W hadronic decay products

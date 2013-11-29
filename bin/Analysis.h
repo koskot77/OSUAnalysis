@@ -114,19 +114,19 @@ private:
     double thPtRec,    thEtaRec,    thPhiRec,  thMrec;
 
     // leading jets:
-    int    leadingJetPdgId, leadingJetIndGen;
+    int    leadingJetPdgId, leadingJetIndGen, leadingJetFlavor;
     double leadingJetPtGen, leadingJetEtaGen, leadingJetPhiGen;
     double leadingJetPtRec, leadingJetEtaRec, leadingJetPhiRec;
     double leadingJetTCHE,  leadingJetTCHP,   leadingJetCSV;
-    int    subleadJetPdgId, subleadJetIndGen;
+    int    subleadJetPdgId, subleadJetIndGen, subleadJetFlavor;
     double subleadJetPtGen, subleadJetEtaGen, subleadJetPhiGen;
     double subleadJetPtRec, subleadJetEtaRec, subleadJetPhiRec;
     double subleadJetTCHE,  subleadJetTCHP,   subleadJetCSV;
-//    int    thirdJetPdgId, thirdJetIndGen;
+    int    thirdJetPdgId,   thirdJetIndGen,   thirdJetFlavor;
 //    double thirdJetPtGen, thirdJetEtaGen, thirdJetPhiGen;
     double thirdJetPtRec, thirdJetEtaRec, thirdJetPhiRec;
     double thirdJetTCHE,  thirdJetTCHP,   thirdJetCSV;
-//    int    forthJetPdgId, forthJetIndGen;
+    int    forthJetPdgId, forthJetIndGen, forthJetFlavor;
 //    double forthJetPtGen, forthJetEtaGen, forthJetPhiGen;
     double forthJetPtRec, forthJetEtaRec, forthJetPhiRec;
     double forthJetTCHE,  forthJetTCHP,   forthJetCSV;

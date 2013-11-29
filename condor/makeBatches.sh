@@ -38,7 +38,9 @@ w4jsd="W4Jsd1 W4Jsd2 W4Jsd3 W4Jsd4 W4Jsd5"
 w4jmu="W4Jmu1 W4Jmu2 W4Jmu3 W4Jmu4"
 w4jmd="W4Jmd1 W4Jmd2 W4Jmd3 W4Jmd4 W4Jmd5"
 
-processes="$tt $wj $w1j $w2j $w3j $w4j $zn $zj $top $vv"
+qcd="QCD_170_300 QCD_300_470 QCD_470_600 QCD_600_800 QCD_800_1000 QCD_1000_1400 QCD_1400_1800"
+processes="$qcd"
+#processes="$tt $wj $w1j $w2j $w3j $w4j $zn $zj $top $vv"
 #processes="$muA $muB $muC $muD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
 #processes="$eA $eB $eC $eD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
 #processes="C2 C3 C4 C5 C6 C7 C8 C9 C30 C31 C32 C33 C34 D10 D11 D12 D13 D14 D15 D16 D17 D18 D19"
@@ -48,6 +50,6 @@ processes="$tt $wj $w1j $w2j $w3j $w4j $zn $zj $top $vv"
 #processes="$muA $muB $muC $muD"
 
 for s in $processes; do
-   arguments="-sd -d$s -o/data/users/kkotov/2013.11.08/"
+   arguments="-sd -d$s -o/data/users/kkotov/2013.11.15/"
    cat batch.jdf | sed -e "s|ARGS|$arguments|g" -e "s|OUT|$s|g" -e "s|ERR|$s|g" -e "s|LOG|$s|g" > tmp/batch$s""met.jdf
 done;

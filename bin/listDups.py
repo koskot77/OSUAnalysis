@@ -12,7 +12,7 @@ def check_files(arg,dirname,files):
           basename = os.path.basename(file)
           parts = re.split('_',basename)
           if len(parts) > 2:
-             jobNum = int(re.split('_',basename)[10])
+             jobNum = int(re.split('_',basename)[3])
              if not jobs.has_key(jobNum) :
                 jobs[jobNum] = [];
 

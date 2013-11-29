@@ -104,7 +104,8 @@ bool BTagSFUtil::applySF(bool& isBTagged, float Btag_SF, float Btag_eff){
     if( !isBTagged ) {
 
       //fraction of jets that need to be upgraded
-      float mistagPercent = (1.0 - Btag_SF) / (1.0 - (Btag_SF/Btag_eff) );
+///      float mistagPercent = (1.0 - Btag_SF) / (1.0 - (Btag_SF/Btag_eff) );
+      float mistagPercent = (1.0 - Btag_SF) / (1.0 - (1.0/Btag_eff) ); //// https://hypernews.cern.ch/HyperNews/CMS/get/B2G-12-022/21/1/1/1/1.html
 
       //upgrade to tagged
       if( coin < mistagPercent ) {newBTag = true;}
@@ -180,15 +181,15 @@ float BTagSFUtil::GetBTageff (int workingPoint){
 //  effb =  -0.00592795459517*x*x*x*x +  0.100276502585*x*x*x +  -0.562858452018*x*x +  1.02676379935*x +  0.0810613917651;
  
 //https://twiki.cern.ch/twiki/pub/CMS/BtagPOG/eff_b_c-ttbar_payload.txt :
-  double y=0; // discriminator value for CSV
-  switch( workingPoint ){
-     case LOOSE:  y = 0.244; break;
-     case MEDIUM: y = 0.679; break;
-     case TIGHT:  y = 0.898; break;
-  }
-  effb = -4.46932526854*y*y*y*y+7.32781975653*y*y*y-3.78459588569*y*y+0.221027515486*y+0.970299300468;
+//  double y=0; // discriminator value for CSV
+//  switch( workingPoint ){
+//     case LOOSE:  y = 0.244; break;
+//     case MEDIUM: y = 0.679; break;
+//     case TIGHT:  y = 0.898; break;
+//  }
+//  effb = -4.46932526854*y*y*y*y+7.32781975653*y*y*y-3.78459588569*y*y+0.221027515486*y+0.970299300468;
 //  effb_err_max = -2.28719954194*y*y*y*y+1.80361455348*y*y*y+1.18308812929*y*y-1.58926423122*y+1.22173072594;
- 
+  effb = 0.696407; // root.exe 'bEff.C++(4,250,250)'
   return effb;
 }
 
@@ -334,15 +335,15 @@ break;
 case MEDIUM:
   if( fabs(eta)>=0.0 &&  fabs(eta) <0.8 )
     {
-      if( meanminmax == 0 ) tmpMistag = (0.00967751+(2.54564e-05*x))+(-6.92256e-10*(x*x));
+      if( meanminmax == 0 ) tmpMistag = 0.0164342 + (-2.16288e-05*x) + (3.01435e-08*x*x); //(0.00967751+(2.54564e-05*x))+(-6.92256e-10*(x*x));
     }
   if( fabs(eta)>=0.8 &&  fabs(eta) <1.6 )
     {
-      if( meanminmax == 0 ) tmpMistag = (0.00974141+(5.09503e-05*x))+(2.0641e-08*(x*x));
+      if( meanminmax == 0 ) tmpMistag = 0.0133283 + (-6.65263e-06*x) + (3.2886e-08*x*x); //(0.00974141+(5.09503e-05*x))+(2.0641e-08*(x*x));
     }
   if( fabs(eta)>=1.6 &&  fabs(eta) <2.4 )
     {
-      if( meanminmax == 0 ) tmpMistag = (0.013595+(0.000104538*x))+(-1.36087e-08*(x*x));
+      if( meanminmax == 0 ) tmpMistag = 0.01527 + (3.91721e-05*x) + (-1.25045e-08*x*x); //(0.013595+(0.000104538*x))+(-1.36087e-08*(x*x));
     }
 //  if( fabs(eta)>0.0 &&  fabs(eta) <=2.4 )
 //      {

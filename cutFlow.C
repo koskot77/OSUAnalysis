@@ -40,90 +40,88 @@ tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT11_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT12_metSel.root");
 */
 /*
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh1_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh2_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh3_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh4_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh5_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh6_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh7_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh8_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh1_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh2_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh3_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh4_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh5_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh6_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTlh7_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll1_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll2_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll3_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll4_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll5_metSel.root");
-tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll6_metSel.root");
-*/
-/*
-top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T1_metSel.root");
-top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T2_metSel.root");
-top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T3_metSel.root");
-top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T4_metSel.root");
-top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T5_metSel.root");
-top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T6_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J1_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J2_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J3_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J4_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J5_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J6_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J7_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J8_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J9_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J10_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J11_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W1J12_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J1_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J2_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J3_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J4_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J5_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J6_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J7_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J8_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W2J9_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J1_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J2_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J3_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J4_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J5_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J6_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J7_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W3J8_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J1_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J2_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J3_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J4_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J5_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J6_metSel.root");
-wj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_W4J7_metSel.root");
-zj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZN1_metSel.root");
-zj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZN2_metSel.root");
-zj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZN3_metSel.root");
-zj ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZN4_metSel.root");
-ww ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WW1_metSel.root");
-ww ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WW2_metSel.root");
-ww ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WW3_metSel.root");
-ww ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WW4_metSel.root");
-ww ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WW5_metSel.root");
-wz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WZ1_metSel.root");
-wz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WZ2_metSel.root");
-wz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WZ3_metSel.root");
-wz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WZ4_metSel.root");
-wz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_WZ5_metSel.root");
-zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ1_metSel.root");
-zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ2_metSel.root");
-zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ3_metSel.root");
-zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ4_metSel.root");
-zz ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_ZZ5_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh1_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh2_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh3_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh4_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh5_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh6_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh7_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh8_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh1_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh2_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh3_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh4_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh5_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh6_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTlh7_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTll1_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTll2_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTll3_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTll4_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTll5_metSel.root");
+tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TTll6_metSel.root");
+top->AddFile("/data/users/kkotov/2013.11.15/micro_T1_metSel.root");
+top->AddFile("/data/users/kkotov/2013.11.15/micro_T2_metSel.root");
+top->AddFile("/data/users/kkotov/2013.11.15/micro_T3_metSel.root");
+top->AddFile("/data/users/kkotov/2013.11.15/micro_T4_metSel.root");
+top->AddFile("/data/users/kkotov/2013.11.15/micro_T5_metSel.root");
+top->AddFile("/data/users/kkotov/2013.11.15/micro_T6_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J1_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J2_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J3_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J4_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J5_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J6_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J7_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J8_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J9_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J10_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J11_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W1J12_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J1_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J2_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J3_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J4_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J5_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J6_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J7_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J8_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W2J9_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J1_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J2_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J3_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J4_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J5_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J6_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J7_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W3J8_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J1_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J2_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J3_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J4_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J5_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J6_metSel.root");
+wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J7_metSel.root");
+zj ->AddFile("/data/users/kkotov/2013.11.15/micro_ZN1_metSel.root");
+zj ->AddFile("/data/users/kkotov/2013.11.15/micro_ZN2_metSel.root");
+zj ->AddFile("/data/users/kkotov/2013.11.15/micro_ZN3_metSel.root");
+zj ->AddFile("/data/users/kkotov/2013.11.15/micro_ZN4_metSel.root");
+ww ->AddFile("/data/users/kkotov/2013.11.15/micro_WW1_metSel.root");
+ww ->AddFile("/data/users/kkotov/2013.11.15/micro_WW2_metSel.root");
+ww ->AddFile("/data/users/kkotov/2013.11.15/micro_WW3_metSel.root");
+ww ->AddFile("/data/users/kkotov/2013.11.15/micro_WW4_metSel.root");
+ww ->AddFile("/data/users/kkotov/2013.11.15/micro_WW5_metSel.root");
+wz ->AddFile("/data/users/kkotov/2013.11.15/micro_WZ1_metSel.root");
+wz ->AddFile("/data/users/kkotov/2013.11.15/micro_WZ2_metSel.root");
+wz ->AddFile("/data/users/kkotov/2013.11.15/micro_WZ3_metSel.root");
+wz ->AddFile("/data/users/kkotov/2013.11.15/micro_WZ4_metSel.root");
+wz ->AddFile("/data/users/kkotov/2013.11.15/micro_WZ5_metSel.root");
+zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ1_metSel.root");
+zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ2_metSel.root");
+zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ3_metSel.root");
+zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ4_metSel.root");
+zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ5_metSel.root");
 */
 /*
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B1_metSel.root");
@@ -146,7 +144,13 @@ data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D5_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D6_metSel.root");
 */
 
-data->AddFile("microOld_MET2012B_metSel.root");
+//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012A_metSel.root");
+//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012B_metSel.root");
+//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012C_metSel.root");
+//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012A_metSel.root");
+//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012B_metSel.root");
+//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012C_metSel.root");
+data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012D_metSel.root");
 
 const char *cut[] = {
 "Stage -1: Total expected             ",
@@ -191,7 +195,7 @@ TH1F *tmp = new TH1F("tmp","",10000,0,10000);
 double lumiScale = ( 19.6 )/5.;
 
 cout<<"Cut                               &   TTJets   & ZJetsToNuNu & WJetsToLNu &  Top  &   VV   &   Total  & MET "<<endl;
-for(int sel=-1; sel<27; sel++){ //22
+for(int sel=7; sel<8; sel++){ //22
   char buff[512];
   switch( sel ){
     case -1 : sprintf(buff,"weight"); break;
@@ -253,7 +257,7 @@ for(int sel=-1; sel<27; sel++){ //22
   data->Draw("type>>tmp",buff);
   double dataYield  = tmp->Integral();
 
-  cout<<cut[sel+1]<<" & "<<(ttYield)<<" & "<<long(zjYield+0.5)<<" & "<<long(wjYield+0.5)<<" & "<<long(topYield+0.5)<<" & "<<long(vvYield+0.5)<<" & "<<long(ttYield+zjYield+wjYield+topYield+vvYield+0.5)<<"  \\\\ "<<dataYield<<endl;
+  cout<<cut[sel+1]<<" & "<<long(ttYield+0.5)<<" & "<<long(zjYield+0.5)<<" & "<<long(wjYield+0.5)<<" & "<<long(topYield+0.5)<<" & "<<long(vvYield+0.5)<<" & "<<long(ttYield+zjYield+wjYield+topYield+vvYield+0.5)<<"  \\\\ "<<dataYield<<endl;
 }
 
 }
