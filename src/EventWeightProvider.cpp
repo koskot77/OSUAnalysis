@@ -160,7 +160,7 @@ void EventWeightProvider::defineNumberOfProducedEvents() {
 // BEANs:
     // center, su, sd, mu, md
 
-    int nTTJets[] = {6912438, 7517725, 4519360, 5406179, 5403819}; //5423781 with corrupted 34_4 md file
+    int nTTJets[] = {6912438, 5001657, 5377915, 5406179, 5467705}; //5423781 with corrupted 34_4 md file
     numberOfProcessedEvents   [DataType::TTJets] = nTTJets[sampleVersion];
     numberOfPattplSkimEvents  [DataType::TTJets] = 0;
     numberOfNtplSkimEvents    [DataType::TTJets] = nTTJets[sampleVersion];
@@ -225,7 +225,7 @@ void EventWeightProvider::defineNumberOfProducedEvents() {
     numberOfElectronSkimEvents[DataType::W3Jets] = 0;
     numberOfMuonSkimEvents    [DataType::W3Jets] = 0;
 
-    int nW4J[] = {13341409, 10575270,  8590718, 12123649, 13880166};
+    int nW4J[] = {13341409, 10475270,  8510718, 12123649, 13880166};
     numberOfProcessedEvents   [DataType::W4Jets] = nW4J[sampleVersion];
     numberOfPattplSkimEvents  [DataType::W4Jets] = 0;
     numberOfNtplSkimEvents    [DataType::W4Jets] = nW4J[sampleVersion];
