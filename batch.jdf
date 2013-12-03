@@ -1,10 +1,10 @@
 universe   = vanilla
 Executable = run.sh
 Should_Transfer_Files   = NO
-Arguments = "4 BTAG MET PROC VAR"
-Output  = t4_BTAG_MET_PROC.txt
-Error   = t4_BTAG_MET_PROC.err
-Log     = t4_BTAG_MET_PROC.log
+Arguments = "4 BTAG MET 250 PROC VAR"
+Output  = dd4_BTAG_MET_PROC.txt
+Error   = dd4_BTAG_MET_PROC.err
+Log     = dd4_BTAG_MET_PROC.log
 remove_kill_sig = 2
 +IsLocalJob  = true
 Requirements = IsLocalSlot && Memory > 1024 && OpSys == "LINUX" && (Arch != "DUMMY")

@@ -22,13 +22,13 @@ if( lastStage>9 && lastStage<1 ){
 }
 unsigned    lookUpMask[10] = {1, 3, 7, 15, 31, 31, 31, 31, 31, 31};
 unsigned    lookUpMET [10] = {0, 0, 0,  0,  0,  0,150,250,350,450};
-const char *lookUpName[10] = {"","3jets/tPeakStage1trg","3jets/tPeakStage2trg","3jets/tPeakStage3trg","3jets/tPeakStage4qcd",
+const char *lookUpName[10] = {"","3jets/tPeakStage1trg","3jets/tPeakStage2trg","3jets/tPeakStage3trg","3jets/tPeakStage4trg",
 "3jets/tPeakStage4", "tPeakStage4met150", "tPeakStage4met250", "tPeakStage4met350", "tPeakStage4met450"};
 
 TChain *micro = new TChain("micro");
 
 if( process==-1 || process==SIG ){
-micro->AddFile("micro_signals_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_signals_metSel.root");
 //micro->AddFile("/data/users/kkotov/2013.05.12/micro_signals_metSel.root");
 //micro->AddFile("/data/users/kkotov/2013.05.12/micro_signalsMore_metSel_jecDown.root");
 }
@@ -59,19 +59,19 @@ micro->AddFile("/data/users/kkotov/2013.11.15/micro_ZJ15_metSel.root");
 micro->AddFile("/data/users/kkotov/2013.11.15/micro_ZJ16_metSel.root");
 break;
 case Q2UP:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_ZJsu_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_ZJsu_metSel.root");
 return;
 break;
 case Q2DOWN:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_ZJsd_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_ZJsd_metSel.root");
 break;
 return;
 case MATCHUP:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_ZJmu_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_ZJmu_metSel.root");
 return;
 break;
 case MATCHDOWN:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_ZJmd_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_ZJmd_metSel.root");
 return;
 break;
 default: return; break;
@@ -111,16 +111,16 @@ micro->AddFile("/data/users/kkotov/2013.11.15/micro_WJ28_metSel.root");
 micro->AddFile("/data/users/kkotov/2013.11.15/micro_WJ29_metSel.root");
 break;
 case Q2UP:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_WJsu_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_WJsu_metSel.root"); //??
 break;
 case Q2DOWN:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_WJsd_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_WJsd_metSel.root"); //??
 break;
 case MATCHUP:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_WJmu_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_WJmu_metSel.root"); //??
 break;
 case MATCHDOWN:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_WJmd_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_WJmd_metSel.root"); //??
 break;
 default: return; break;
 }
@@ -171,33 +171,30 @@ micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3J7_metSel.root");
 micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3J8_metSel.root");
 break;
 case Q2UP:
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsu1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsu2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsu3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsu4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsu5_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsu6_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsu1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsu2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsu3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsu4_metSel.root");
 break;
 case Q2DOWN:
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsd1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsd2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsd3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsd4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.08.19/micro_W3Jsd5_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsd1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsd2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsd3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jsd4_metSel.root");
 break;
 case MATCHUP:
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmu1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmu2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmu3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmu4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmu5_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmu1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmu2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmu3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmu4_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmu5_metSel.root");
 break;
 case MATCHDOWN:
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmd1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmd2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmd3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmd4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W3Jmd5_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmd1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmd2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmd3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmd4_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W3Jmd5_metSel.root");
 break;
 default: return; break;
 }
@@ -214,32 +211,32 @@ micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4J6_metSel.root");
 micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4J7_metSel.root");
 break;
 case Q2UP:
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsu1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsu2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsu3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsu4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsu5_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsu6_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsu1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsu2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsu3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsu4_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsu5_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsu6_metSel.root");
 break;
 case Q2DOWN:
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsd1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsd2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsd3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsd4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jsd5_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd4_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd5_metSel.root");
 break;
 case MATCHUP:
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmu1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmu2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmu3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmu4_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmu1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmu2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmu3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmu4_metSel.root");
 break;
 case MATCHDOWN:
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmd1_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmd2_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmd3_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmd4_metSel.root");
-micro->AddFile("/data/users/kkotov/2013.10.23/micro_W4Jmd5_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmd1_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmd2_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmd3_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmd4_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jmd5_metSel.root");
 break;
 default: return; break;
 }
@@ -261,16 +258,16 @@ micro->AddFile("/data/users/kkotov/2013.11.15/micro_TT11_metSel.root");
 micro->AddFile("/data/users/kkotov/2013.11.15/micro_TT12_metSel.root");
 break;
 case Q2UP:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_TTsu_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_TTsu_metSel.root");
 break;
 case Q2DOWN:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_TTsd_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_TTsd_metSel.root");
 break;
 case MATCHUP:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_TTmu_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_TTmu_metSel.root");
 break;
 case MATCHDOWN:
-micro->AddFile("/data/users/kkotov/2013.10.17/micro_TTmd_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_TTmd_metSel.root");
 break;
 default: return; break;
 }
@@ -852,7 +849,7 @@ if( type==TTJets ){
 // cout<<"t1PtGen= "<<t1PtGen<<" t2PtGen= "<<t2PtGen<<" rew="<<sqrt(exp(0.156-0.00137*t1PtGen)*exp(0.156-0.00137*t2PtGen))<<endl;
 }
 
-if( fabs(dPhi-3.1415927)<0.36 ){ // && metPtRec>250 
+if( fabs(dPhi-3.1415927)>0.36 ){ // && metPtRec>250 
 
          triJetMass->Fill( sum.M(),  weight);
          topMass->Fill( thMrec, weight );

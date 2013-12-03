@@ -8,4 +8,4 @@ source /sharesoft/osg/ce/setup.sh
 eval `scram runtime -sh`
 export PATH=`echo $PATH | sed 's/\/sharesoft[^:]*//g'`
 echo "Launching the job..."
-root.exe -b -q "processLine.C(\"tPeak($1,$2,$3,$4,$5)\",\"tPeak_C.so\")" 2>&1 
+root.exe -b -q "processLine.C(\"dataDriven($1,$2,$3,$4,$5,$6)\",\"dataDriven_C.so\")" 2>&1 

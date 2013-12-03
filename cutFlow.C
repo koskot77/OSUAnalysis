@@ -39,7 +39,7 @@ tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT10_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT11_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT12_metSel.root");
 */
-/*
+
 tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh1_metSel.root");
 tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh2_metSel.root");
 tt ->AddFile("/data/users/kkotov/2013.11.15/micro_TThh3_metSel.root");
@@ -122,34 +122,10 @@ zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ2_metSel.root");
 zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ3_metSel.root");
 zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ4_metSel.root");
 zz ->AddFile("/data/users/kkotov/2013.11.15/micro_ZZ5_metSel.root");
-*/
-/*
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B1_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B2_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B3_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012B4_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C1_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C2_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C3_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C4_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C5_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C6_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C7_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012C8_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D1_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D2_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D3_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D4_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D5_metSel.root");
-data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D6_metSel.root");
-*/
 
-//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012A_metSel.root");
-//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012B_metSel.root");
-//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012C_metSel.root");
-//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012A_metSel.root");
-//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012B_metSel.root");
-//data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012C_metSel.root");
+data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012A_metSel.root");
+data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012B_metSel.root");
+data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012C_metSel.root");
 data->AddFile("/data/users/kkotov/2013.11.15/micro_MET2012D_metSel.root");
 
 const char *cut[] = {
@@ -192,10 +168,10 @@ const char *cut[] = {
 TH1F *tmp = new TH1F("tmp","",10000,0,10000);
 
 //double lumiScale = (0.802 + 4.403 + 6.388 + 7.248)/5.;
-double lumiScale = ( 19.6 )/5.;
+double lumiScale = ( 19.7 )/5.;
 
 cout<<"Cut                               &   TTJets   & ZJetsToNuNu & WJetsToLNu &  Top  &   VV   &   Total  & MET "<<endl;
-for(int sel=7; sel<8; sel++){ //22
+for(int sel=-1; sel<27; sel++){ //22
   char buff[512];
   switch( sel ){
     case -1 : sprintf(buff,"weight"); break;
