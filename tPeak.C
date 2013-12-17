@@ -8,7 +8,7 @@
 #include "TLorentzVector.h"
 //#include "../../../tdrstyle.C"
 
-///std::map<std::string,std::set<int> > uniqueEvents;
+std::map<int,std::set<int> > uniqueEvents;
 
 enum {Data=0, TTJets=1, WJets=2, ZJets=3, Znunu=4, QCD=8, Top=16, WW=24, WZ=25, ZZ=26, W1J=67, W2J=68, W3J=69, W4J=70, SIG=1000, A=1001, B=1002, C=1003, D=1004, E=1005};
 enum {CENTER=0, Q2UP=1, Q2DOWN=2, MATCHUP=3, MATCHDOWN=4};
@@ -26,6 +26,15 @@ const char *lookUpName[10] = {"","3jets/tPeakStage1trg","3jets/tPeakStage2trg","
 "3jets/tPeakStage4", "tPeakStage4met150", "tPeakStage4met250", "tPeakStage4met350", "tPeakStage4met450"};
 
 TChain *micro = new TChain("micro");
+
+if( process==-1 || process==QCD ){
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_QCD_170_300_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_QCD_300_470_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_QCD_470_600_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_QCD_600_800_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_QCD_800_1000_metSel.root");
+micro->AddFile("/data/users/kkotov/2013.11.15/micro_QCD_1000_1400_metSel.root");
+}
 
 if( process==-1 || process==SIG ){
 micro->AddFile("/data/users/kkotov/2013.11.15/micro_signals_metSel.root");
@@ -629,16 +638,18 @@ TH1F *triJetMass=0, *topMass=0, *topMass2p1=0, *met=0, *l1Pt=0, *j1Pt=0, *j2Pt=0
 
 for(int event=0; micro->GetEntry(event) /*&& event<10000*/; event++){
 
+   if( (event%100000) == 0 ) std::cout<<"Event: "<<event<<"/"<<micro->GetEntries()<<std::endl;
+
 if( ( (trig&0x100)!=0x100 )
 // || lepton1PtRec<10 || !lepton1IsTight || fabs(lepton1EtaRec)>2.4 
 ) continue; //  HLT_PFMET150
 
 //if( lepton1PtRec<0 ) continue;
 
-///  if( !uniqueEvents[fileName].insert(event).second ){
-///     cout<<"File "<<fileName<<", event "<<event<<" was already processed"<<endl;
-///     continue;
-///  }
+  if( type==Data && !uniqueEvents[run].insert(event).second ){
+     cout<<"Run "<<run<<", event "<<event<<" was already processed"<<endl;
+     continue;
+  }
 
   if( type!=Data ) weight *= lumiScale;
 
@@ -796,8 +807,6 @@ if(type>=57 && type<75 && type!=W1J && type!=W2J && type!=W3J && type!=W4J){
 }
 if( !triJetMass || !topMass || !topMass2p1 ){ std::cout<<"Unknown type: "<<type<<std::endl; return; }
 
-   if( (event%100000) == 0 ) std::cout<<"Event: "<<event<<"/"<<micro->GetEntries()<<std::endl;
-
       bool passB = false;
       switch(nBjets){
           case -2 : passB = (leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244); break;
@@ -813,6 +822,7 @@ if( !triJetMass || !topMass || !topMass2p1 ){ std::cout<<"Unknown type: "<<type<
 // ); break;
           default : break;
       }
+
 
       if( (selection & lookUpMask[lastStage]) == lookUpMask[lastStage] && (lastStage>=4 ? thirdJetPtRec>40 && forthJetPtRec<35: true )
 && passB && metPtRec>(MET>lookUpMET[lastStage]?MET:lookUpMET[lastStage]) ){
@@ -840,14 +850,15 @@ std::cout<<"v2.SetPtEtaPhiM("<<jet2WhPtRec<<","<<jet2WhEtaRec<<","<<jet2WhPhiRec
 std::cout<<"(v0+v1+v2).M()"<<std::endl;
 //}
 */
-         double dPhi = fabs(leadingJetPhiRec - subleadJetPhiRec);
-         if( dPhi>3.1415927 ) dPhi = 2.*3.1415927 - dPhi;
-         if( j12Phi ) j12Phi->Fill(dPhi, weight);
 
 if( type==TTJets ){
  weight *= sqrt(exp(0.156-0.00137*t1PtGen)*exp(0.156-0.00137*t2PtGen));
 // cout<<"t1PtGen= "<<t1PtGen<<" t2PtGen= "<<t2PtGen<<" rew="<<sqrt(exp(0.156-0.00137*t1PtGen)*exp(0.156-0.00137*t2PtGen))<<endl;
 }
+
+         double dPhi = fabs(leadingJetPhiRec - subleadJetPhiRec);
+         if( dPhi>3.1415927 ) dPhi = 2.*3.1415927 - dPhi;
+         if( j12Phi ) j12Phi->Fill(dPhi, weight);
 
 if( fabs(dPhi-3.1415927)>0.36 ){ // && metPtRec>250 
 
@@ -885,7 +896,11 @@ if( fabs(dPhi-3.1415927)>0.36 ){ // && metPtRec>250
 
 }
 //return;
-
+int dups = 0;
+for(std::map<int,std::set<int> >::const_iterator it=uniqueEvents.begin(); it!=uniqueEvents.end(); it++){
+   if( it->second.size() ) cout<<"run: "<<it->first<<" # of events: "<<it->second.size()<<endl;
+   dups += it->second.size();
+}
 string outputName( lookUpName[lastStage] );
 switch( nBjets ){
   case -2 : outputName.append("_vetoB"); break;
@@ -899,6 +914,7 @@ char buff[128];
 sprintf(buff,"MET%d",int(MET>lookUpMET[lastStage]?MET:lookUpMET[lastStage]));
 outputName.append(buff);
 
+if( process==QCD ) outputName.append("_QCD");
 if( process==SIG ) outputName.append("_SIG");
 if( process==ZJets ) outputName.append("_ZJ");
 if( process==Znunu ) outputName.append("_ZN");

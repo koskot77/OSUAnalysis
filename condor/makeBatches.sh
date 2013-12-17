@@ -47,11 +47,11 @@ w4jmd="W4Jmd1 W4Jmd2 W4Jmd3 W4Jmd4 W4Jmd5"
 #processes="$eA $eB $eC $eD $tt $wj $w1j $w2j $w3j $w4j $zj $top $vv"
 #processes="C2 C3 C4 C5 C6 C7 C8 C9 C30 C31 C32 C33 C34 D10 D11 D12 D13 D14 D15 D16 D17 D18 D19"
 #processes="$metA $metB $metC $metD $tt $wj $w1j $w2j $w3j $w4j $zn $top $vv"
-processes="$w3jsu $w3jsd $w3jmu $w3jmd $w4jsu $w4jsd $w4jmu $w4jmd"
-#processes="TTlh1 TTlh2 TTlh3 TTlh4 TTlh5 TTlh6 TTlh7"
+#processes="$w3jsu $w3jsd $w3jmu $w3jmd $w4jsu $w4jsd $w4jmu $w4jmd"
+processes="D TTlh1 TTlh2 TTlh3 TTlh4 TTlh5 TTlh6 TTlh7"
 #processes="$muA $muB $muC $muD"
 
 for s in $processes; do
-   arguments="-sd -d$s -o/data/users/kkotov/2013.11.15/"
+   arguments="-sd -d$s -o/data/users/kkotov/2013.12.10/"
    cat batch.jdf | sed -e "s|ARGS|$arguments|g" -e "s|OUT|$s|g" -e "s|ERR|$s|g" -e "s|LOG|$s|g" > tmp/batch$s""met.jdf
 done;

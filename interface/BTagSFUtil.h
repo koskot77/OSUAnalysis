@@ -144,8 +144,9 @@ float BTagSFUtil::GetBTagSF (float pt, float eta, int meanminmax, int workingPoi
   if( pt>=600 && pt<800 ) bin = 15;
   if( pt>800 ) bin = 15;
 
-  if( x< 20 ) x =  20;
-  if( x>800 ) x = 800;
+  double uncertFactor = 1.;
+  if( x< 20 ){ x =  20; uncertFactor = 2.; }
+  if( x>800 ){ x = 800; uncertFactor = 2.; }
 
   float SFb_errorLoose[]  = { 0.033299,  0.0146768, 0.013803,  0.0170145, 0.0166976, 0.0137879, 0.0149072, 0.0153068,
                               0.0133077, 0.0123737, 0.0157152, 0.0175161, 0.0209241, 0.0278605, 0.0346928, 0.0350099 };
@@ -156,16 +157,16 @@ float BTagSFUtil::GetBTagSF (float pt, float eta, int meanminmax, int workingPoi
   float SFb = 1;
   switch( workingPoint ){
      case LOOSE  : SFb = 0.997942*((1.+(0.00923753*x))/(1.+(0.0096119*x)));
-        if( meanminmax == 1 ) SFb += SFb_errorLoose[bin];
-        if( meanminmax ==-1 ) SFb -= SFb_errorLoose[bin];
+        if( meanminmax == 1 ) SFb += SFb_errorLoose[bin] * uncertFactor;
+        if( meanminmax ==-1 ) SFb -= SFb_errorLoose[bin] * uncertFactor;
      break;
      case MEDIUM : SFb = (0.938887+(0.00017124*x))+(-2.76366e-07*(x*x));
-        if( meanminmax == 1 ) SFb += SFb_errorMedium[bin];
-        if( meanminmax ==-1 ) SFb -= SFb_errorMedium[bin];
+        if( meanminmax == 1 ) SFb += SFb_errorMedium[bin] * uncertFactor;
+        if( meanminmax ==-1 ) SFb -= SFb_errorMedium[bin] * uncertFactor;
      break;
      case TIGHT  : SFb = (0.927563+(1.55479e-05*x))+(-1.90666e-07*(x*x));
-        if( meanminmax == 1 ) SFb += SFb_errorTight[bin];
-        if( meanminmax ==-1 ) SFb -= SFb_errorTight[bin];
+        if( meanminmax == 1 ) SFb += SFb_errorTight[bin] * uncertFactor;
+        if( meanminmax ==-1 ) SFb -= SFb_errorTight[bin] * uncertFactor;
      break;
      default : break;
   }

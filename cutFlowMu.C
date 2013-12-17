@@ -39,6 +39,7 @@ tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT10_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT11_metSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TT12_metSel.root");
 */
+/*
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh1_muSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh2_muSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TThh3_muSel.root");
@@ -60,6 +61,7 @@ tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll3_muSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll4_muSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll5_muSel.root");
 tt ->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_TTll6_muSel.root");
+*/
 /*
 top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T1_metSel.root");
 top->AddFile("/data_tmp/users/kkotov/2013.10.30/micro_T2_metSel.root");
@@ -145,6 +147,21 @@ data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D5_metSel.root");
 data->AddFile("/data/users/kkotov/2013.10.19/micro_MET2012D6_metSel.root");
 */
 
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd1_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd2_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd3_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd4_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4Jsd5_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J1_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J2_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J3_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J4_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J5_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J6_metSel.root");
+//wj ->AddFile("/data/users/kkotov/2013.11.15/micro_W4J7_metSel.root");
+//wj ->AddFile("/data/users/kkotov/micro_W3JFSIM_metSel.root");
+//wj ->AddFile("micro_W4JetsToLNu_muSel.root");
+
 const char *cut[] = {
 "Stage -1: Total expected             ",
 "Stage  0: Loose electon veto         ",
@@ -186,46 +203,47 @@ TH1F *tmp = new TH1F("tmp","",10000,0,10000);
 double lumiScale = ( 19.6 )/5.;
 
 cout<<"Cut                               &   TTJets   & ZJetsToNuNu & WJetsToLNu &  Top  &   VV   &   Total  & MET "<<endl;
-for(int sel=-1; sel<27; sel++){ //22
+//for(int sel=-1; sel<27; sel++){ //22
+for(int sel=9; sel<10; sel++){
   char buff[512];
   switch( sel ){
     case -1 : sprintf(buff,"weight"); break;
-    case  0 : sprintf(buff,"((selection&1)==1 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  1 : sprintf(buff,"((selection&3)==3 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  2 : sprintf(buff,"((selection&7)==7 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  3 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  4 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10&& thirdJetPtRec>40)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  0 : sprintf(buff,"((muSel&1)==1 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  1 : sprintf(buff,"((muSel&3)==3 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  2 : sprintf(buff,"((muSel&7)==7 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  3 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  4 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10&& thirdJetPtRec>40)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case  5 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  6 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  7 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  5 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  6 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  7 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case  8 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0 && "
+    case  8 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0 && "
                            "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case  9 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 10 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 11 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case  9 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 10 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 11 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>250 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case 12 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 13 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0 && "
+    case 12 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 13 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0 && "
                            "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 14 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 15 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 16 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 14 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 15 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 16 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>300 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case 17 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 18 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0 && "
+    case 17 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 18 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0 && "
                            "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 19 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 20 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 21 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 19 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 20 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 21 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>350 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
-    case 22 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 23 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0 && "
+    case 22 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 23 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0 && "
                            "leadingJetCSV<0.244 && subleadJetCSV<0.244 && thirdJetCSV<0.244 && forthJetCSV<0.244)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 24 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 25 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
-    case 26 : sprintf(buff,"((selection&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 24 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==0)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 25 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==1)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
+    case 26 : sprintf(buff,"((muSel&15)==15 && ( (muTRIGs&0x80000000)==0x80000000 ) && lepton1PtRec>40 && lepton1IsTight && abs(lepton1EtaRec)<2.1 && lepton2PtRec<10 && thirdJetPtRec>40 && forthJetPtRec<35 && m3jets<250 && metPtRec>400 && numberOfBJets==2)*weight*sqrt(exp(0*(0.156-0.00137*t1PtGen))*exp(0*(0.156-0.00137*t2PtGen)))"); break;
 
     default : exit(0); break;
   }

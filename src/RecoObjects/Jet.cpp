@@ -441,6 +441,14 @@ cout
 <<"-BTagSF= "<<btsfutil.GetBTagSF(jet_pt, jet_eta,-1, workingPoint)<<" BTageff= "<<btsfutil.GetBTageff(workingPoint)<<" -LightJetSF= "<<btsfutil.GetLightJetSF(jet_pt, jet_eta,-1, workingPoint)<<" -LightJeteff= "<<btsfutil.GetLightJeteff(jet_pt, jet_eta,-1, workingPoint)
 <<endl;
 */
+
+// SFc = SFb with twice the quoted uncertainty:
+if( var != 0 && abs(jet_flavor)==4 ){
+   double delta = BTagSF - btsfutil.GetBTagSF(jet_pt, jet_eta, 0, workingPoint);
+   BTagSF += delta;
+}
+
+//if( abs(jet_flavor)!=5 && abs(jet_flavor)!=4 )
 	btsfutil.modifyBTagsWithSF(isTagged, jet_flavor, BTagSF, BTageff, LightJetSF, LightJeteff);
 	return (isTagged);
 }
