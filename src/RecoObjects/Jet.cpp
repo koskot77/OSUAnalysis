@@ -430,6 +430,8 @@ bool Jet::isBJet(BtagAlgorithm::value type, BtagAlgorithm::workingPoint wp) cons
            default: break;
         }
 
+//if( var!=0 && abs(jet_flavor)!=5 && abs(jet_flavor)!=4 ) var = 0;
+
 	double BTagSF =  btsfutil.GetBTagSF(jet_pt, jet_eta, var, workingPoint);
 	double BTageff =  btsfutil.GetBTageff(workingPoint);
 	double LightJetSF =  btsfutil.GetLightJetSF(jet_pt, jet_eta, var, workingPoint);
@@ -448,7 +450,6 @@ if( var != 0 && abs(jet_flavor)==4 ){
    BTagSF += delta;
 }
 
-//if( abs(jet_flavor)!=5 && abs(jet_flavor)!=4 )
 	btsfutil.modifyBTagsWithSF(isTagged, jet_flavor, BTagSF, BTageff, LightJetSF, LightJeteff);
 	return (isTagged);
 }
