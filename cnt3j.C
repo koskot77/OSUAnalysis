@@ -108,12 +108,18 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   wspace->factory( "Gaussian::pPDFtt(   beta_PDFtt[   0,-5,5],glob_PDFtt[   0,-5,5],1)" );
   wspace->factory( "Gaussian::pQ2tt(    beta_Q2tt[    0,-5,5],glob_Q2tt[    0,-5,5],1)" );
   wspace->factory( "Gaussian::pMATCHtt( beta_MATCHtt[ 0,-5,5],glob_MATCHtt[ 0,-5,5],1)" );
-  wspace->factory( "Gaussian::pREWtt  ( beta_REWtt[   0,-5,5],glob_REWtt[   0,-5,5],1)" );
+  wspace->factory( "Gaussian::pREWtt(   beta_REWtt[   0,-5,5],glob_REWtt[   0,-5,5],1)" );
   wspace->factory( "Gaussian::pPDFt(    beta_PDFt[    0,-5,5],glob_PDFt[    0,-5,5],1)" );
   wspace->factory( "Gaussian::pPDFewk(  beta_PDFewk[  0,-5,5],glob_PDFewk[  0,-5,5],1)" );  // common for WJ, ZJ, VV
   wspace->factory( "Gaussian::pPDFsig(  beta_PDFsig[  0,-5,5],glob_PDFsig[  0,-5,5],1)" );
-  wspace->factory( "Gaussian::pWJ(      beta_WJ[      0,-5,5],glob_WJ[      0,-5,5],1)" );
   wspace->factory( "Gaussian::pZN(      beta_ZN[      0,-5,5],glob_ZN[      0,-5,5],1)" );
+  wspace->factory( "Poisson::pZ0b( glob_ZMM0b[10,0,100], beta_ZMM0b[10,0,100])");
+  wspace->factory( "Poisson::pZ1b( glob_ZMM1b[ 1,0,100], beta_ZMM1b[ 1,0,100])");
+  wspace->factory( "Gaussian::pWJ(      beta_WJ[      0,-5,5],glob_WJ[      0,-5,5],1)" );
+  wspace->factory( "Gaussian::pWJp1b(   beta_WJp1b[   0,-5,5],glob_WJp1b[   0,-5,5],1)" );
+  wspace->factory( "Gaussian::pNonWJ(   beta_nonWJ[   0,-5,5],glob_nonWJ[   0,-5,5],1)" );
+  wspace->factory( "Poisson::pWmu( glob_singleMu[   9,0,100], beta_singleMu[9,0,100])");
+
 
 //////// signal block /////////
   // POI: signal cross sections (pb)
@@ -235,27 +241,30 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
 
 
 // Data-driven yield for the invisible Z background + log-normal constraints
-  wspace->factory( "znYield0b_nominal[590.]" );
-  wspace->factory( "znYield1b_nominal[111.]" );
-  wspace->factory( "znYield0b_kappa[1.139]" );
-  wspace->factory( "znYield1b_kappa[1.316]" );
-  wspace->factory( "cexpr::alpha_znYield0b('pow(znYield0b_kappa,beta_ZN)',znYield0b_kappa,beta_ZN)" );
-  wspace->factory( "cexpr::alpha_znYield1b('pow(znYield1b_kappa,beta_ZN)',znYield1b_kappa,beta_ZN)" );
-  wspace->factory( "prod::znYield0b(znYield0b_nominal,alpha_znYield0b)" );
-  wspace->factory( "prod::znYield1b(znYield1b_nominal,alpha_znYield1b)" );
-
-  RooRealVar* znYield0b_nominal = wspace->var("znYield0b_nominal");
-  RooRealVar* znYield1b_nominal = wspace->var("znYield1b_nominal");
-  znYield0b_nominal->setVal( znYield0b[MET_CUT] );
-  znYield1b_nominal->setVal( znYield1b[MET_CUT] );
-  RooRealVar* znYield0b_kappa = wspace->var("znYield0b_kappa");
-  RooRealVar* znYield1b_kappa = wspace->var("znYield1b_kappa");
-  znYield0b_kappa->setVal( 1. + znUncert0b[MET_CUT] );
-  znYield1b_kappa->setVal( 1. + znUncert1b[MET_CUT] );
+  wspace->factory( "zmmScale_nominal[10.42]" ); // 5.942 / 0.57
+  wspace->factory( "zmmScale_kappa[1.05]" );
+  wspace->factory( "cexpr::alpha_zmmScale('pow(zmmScale_kappa,beta_ZN)',zmmScale_kappa,beta_ZN)" );
+  wspace->factory( "prod::znYield0b(beta_ZMM0b,zmmScale_nominal,alpha_zmmScale)" );
+  wspace->factory( "prod::znYield1b(beta_ZMM1b,zmmScale_nominal,alpha_zmmScale)" );
 // end of the invisible Z bg. block //
 
 
 // Data-driven yield for the WJets background + log-normal constraints
+  wspace->factory( "nonWJyield_nominal[3.2]" );
+  wspace->factory( "nonWJyield_kappa[1.625]" ); // 2./3.2
+  wspace->factory( "cexpr::alpha_nonWJyield('pow(nonWJyield_kappa,beta_nonWJ)',nonWJyield_kappa,beta_nonWJ)" );
+  wspace->factory( "prod::nonWJyield(nonWJyield_nominal,alpha_nonWJyield)" );
+  wspace->factory( "cexpr::wjMuonYield('glob_singleMu-nonWJyield',glob_singleMu,nonWJyield)" );
+  wspace->factory( "wjScale_nominal[3.12]" ); // (0.38 + 0.29 + 0.648*0.41)/0.3
+  wspace->factory( "wjScale_kappa[1.198]" );  // sqrt( (.07*.07+.07*.07+.648*.02*.648*.02)/(.38+.29+.648*.41)/(.38+.29+.648*.41) + .05*.05/.3/.3 )
+  wspace->factory( "wjProb1b_nominal[0.143]" );
+  wspace->factory( "wjProb1b_kappa[.531]" ); // 0.076/0.0143
+  wspace->factory( "cexpr::alpha_wjScale( 'pow(wjScale_kappa, beta_WJ)',    wjScale_kappa,  beta_WJ)" );
+  wspace->factory( "cexpr::alpha_wjProb1b('pow(wjProb1b_kappa,beta_WJp1b)', wjProb1b_kappa, beta_WJp1b)" );
+  wspace->factory( "prod::wjYield0b(wjMuonYield,wjScale_nominal,alpha_wjScale)" );
+  wspace->factory( "prod::wjYield1b(wjMuonYield,wjScale_nominal,alpha_wjScale,wjProb1b_nominal,alpha_wjProb1b)" );
+
+/*
   wspace->factory( "wjYield0b_nominal[590.]" );
   wspace->factory( "wjYield1b_nominal[111.]" );
   wspace->factory( "wjYield0b_kappa[1.139]" );
@@ -274,7 +283,7 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   wjYield0b_kappa->setVal( 1. + wjUncert0b[MET_CUT] );
   wjYield1b_kappa->setVal( 1. + wjUncert1b[MET_CUT] );
 // end of the WJets bg. block //
-
+*/
 
 ///// Single top bg block /////
   // don't split up single top production mechanisms, work with yields instead
@@ -416,9 +425,12 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   wspace->factory("Poisson::countB0b(observed0b, bgYield0b)");
   wspace->factory("Poisson::countB1b(observed1b, bgYield1b)");
   // full models
-  wspace->factory("PROD::fullSBmodel(countSB0b, countSB1b, pLumi, pJEC, pJER, pTAG, pPDFtt, pQ2tt, pMATCHtt, pREWtt, pPDFsig, pPDFewk, pPDFt, pZN, pWJ, priorQCD, pQCD1b, pTRG, prior)");
-  wspace->factory("PROD::fullBmodel( countB0b,  countB1b,  pLumi, pJEC, pJER, pTAG, pPDFtt, pQ2tt, pMATCHtt, pREWtt, pPDFsig, pPDFewk, pPDFt, pZN, pWJ, priorQCD, pQCD1b, pTRG, prior)");
-  wspace->factory("PROD::combinedPrior(                    pLumi, pJEC, pJER, pTAG, pPDFtt, pQ2tt, pMATCHtt, pREWtt, pPDFsig, pPDFewk, pPDFt, pZN, pWJ, priorQCD, pQCD1b, pTRG, prior)");
+
+///////////////
+  wspace->factory("PROD::fullSBmodel(countSB0b, countSB1b, pLumi, pJEC, pJER, pTAG, pPDFtt, pQ2tt, pMATCHtt, pREWtt, pPDFsig, pPDFewk, pPDFt, pZN, pZ0b, pZ1b, pWmu, pWJ, pWJp1b, pNonWJ, priorQCD, pQCD1b, pTRG, prior)");
+  wspace->factory("PROD::fullBmodel( countB0b,  countB1b,  pLumi, pJEC, pJER, pTAG, pPDFtt, pQ2tt, pMATCHtt, pREWtt, pPDFsig, pPDFewk, pPDFt, pZN, pZ0b, pZ1b, pWmu, pWJ, pWJp1b, pNonWJ, priorQCD, pQCD1b, pTRG, prior)");
+  wspace->factory("PROD::combinedPrior(                    pLumi, pJEC, pJER, pTAG, pPDFtt, pQ2tt, pMATCHtt, pREWtt, pPDFsig, pPDFewk, pPDFt, pZN, pZ0b, pZ1b, pWmu, pWJ, pWJp1b, pNonWJ, priorQCD, pQCD1b, pTRG, prior)");
+///////////////
 
   wspace->Print();
 
@@ -440,7 +452,12 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   RooRealVar* glob_PDFewk = wspace->var("glob_PDFewk");
   RooRealVar* glob_PDFt   = wspace->var("glob_PDFt");
   RooRealVar* glob_ZN     = wspace->var("glob_ZN");
+  RooRealVar* glob_ZMM0b  = wspace->var("glob_ZMM0b");
+  RooRealVar* glob_ZMM1b  = wspace->var("glob_ZMM1b");
+  RooRealVar* glob_singleMu=wspace->var("glob_singleMu");
   RooRealVar* glob_WJ     = wspace->var("glob_WJ");
+  RooRealVar* glob_WJp1b  = wspace->var("glob_WJp1b");
+  RooRealVar* glob_nonWJ  = wspace->var("glob_nonWJ");
   RooRealVar* glob_probQCD1b = wspace->var("glob_probQCD1b");
   glob_lumi  ->setConstant(true);
   glob_JEC   ->setConstant(true);
@@ -455,8 +472,14 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   glob_PDFewk->setConstant(true);
   glob_PDFt  ->setConstant(true);
   glob_ZN    ->setConstant(true);
+  glob_ZMM0b ->setConstant(true);
+  glob_ZMM1b ->setConstant(true);
+  glob_singleMu->setConstant(true);
   glob_WJ    ->setConstant(true);
+  glob_WJp1b ->setConstant(true);
+  glob_nonWJ ->setConstant(true);
   glob_probQCD1b->setConstant(true);
+
   RooArgSet globalObs("global_obs");
   globalObs.add( *glob_lumi  );
   globalObs.add( *glob_JEC   );
@@ -471,8 +494,14 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   globalObs.add( *glob_PDFewk);
   globalObs.add( *glob_PDFt  );
   globalObs.add( *glob_ZN    );
+  globalObs.add( *glob_ZMM0b );
+  globalObs.add( *glob_ZMM1b );
+  globalObs.add( *glob_singleMu );
   globalObs.add( *glob_WJ    );
+  globalObs.add( *glob_WJp1b  );
+  globalObs.add( *glob_nonWJ );
   globalObs.add( *glob_probQCD1b );
+
   // nuisance parameters
   RooRealVar* beta_lumi   = wspace->var("beta_lumi");
   RooRealVar* beta_JEC    = wspace->var("beta_JEC");
@@ -487,7 +516,12 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   RooRealVar* beta_PDFewk = wspace->var("beta_PDFewk");
   RooRealVar* beta_PDFt   = wspace->var("beta_PDFt");
   RooRealVar* beta_ZN     = wspace->var("beta_ZN");
+  RooRealVar* beta_ZMM0b  = wspace->var("beta_ZMM0b");
+  RooRealVar* beta_ZMM1b  = wspace->var("beta_ZMM1b");
+  RooRealVar* beta_singleMu=wspace->var("beta_singleMu");
   RooRealVar* beta_WJ     = wspace->var("beta_WJ");
+  RooRealVar* beta_WJp1b  = wspace->var("beta_WJp1b");
+  RooRealVar* beta_nonWJ  = wspace->var("beta_nonWJ");
   RooRealVar* beta_probQCD1b = wspace->var("beta_probQCD1b");
   RooRealVar* qcdYield    = wspace->var("qcdYield");
 
@@ -503,7 +537,12 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
 //beta_PDFewk->setConstant(true);
 //beta_PDFt  ->setConstant(true);
 //beta_ZN    ->setConstant(true);
-//beta_WJ    ->setConstant(true);
+//beta_ZMM0b ->setConstant(true);
+//beta_ZMM0b ->setConstant(true);
+//beta_singleMu->setConstant(true);
+//beta_WJ->setConstant(true);
+//beta_WJp1b  ->setConstant(true);
+//beta_nonWJ  ->setConstant(true);
 //beta_probQCD1b->setConstant(true);
 //qcdYield   ->setConstant(true);
 //signalXsec ->setConstant(true);
@@ -522,7 +561,12 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   NUI.add( *beta_PDFewk );
   NUI.add( *beta_PDFt   );
   NUI.add( *beta_ZN     );
+  NUI.add( *beta_ZMM0b  );
+  NUI.add( *beta_ZMM1b  );
+  NUI.add( *beta_singleMu);
   NUI.add( *beta_WJ     );
+  NUI.add( *beta_WJp1b  );
+  NUI.add( *beta_nonWJ  );
   NUI.add( *beta_probQCD1b );
   NUI.add( *qcdYield    );
 
@@ -611,7 +655,12 @@ void doPulls(RooAbsPdf *model, RooAbsPdf *prior, double signalCrossSection){
   RooRealVar *beta_PDFewk  = (RooRealVar*) vars->find("beta_PDFewk");
   RooRealVar *beta_PDFt    = (RooRealVar*) vars->find("beta_PDFt");
   RooRealVar *beta_ZN      = (RooRealVar*) vars->find("beta_ZN");
+  RooRealVar *beta_ZMM0b   = (RooRealVar*) vars->find("beta_ZMM0b");
+  RooRealVar *beta_ZMM1b   = (RooRealVar*) vars->find("beta_ZMM1b");
+  RooRealVar *beta_singleMu= (RooRealVar*) vars->find("beta_singleMu");
   RooRealVar *beta_WJ      = (RooRealVar*) vars->find("beta_WJ");
+  RooRealVar *beta_nonWJ   = (RooRealVar*) vars->find("beta_nonWJ");
+  RooRealVar *beta_WJp1b   = (RooRealVar*) vars->find("beta_WJp1b");
   RooRealVar *beta_probQCD1b=(RooRealVar*) vars->find("beta_probQCD1b");
   RooRealVar *qcdYield     = (RooRealVar*) vars->find("qcdYield");
   RooRealVar *observed0b   = (RooRealVar*) vars->find("observed0b");
@@ -677,9 +726,34 @@ void doPulls(RooAbsPdf *model, RooAbsPdf *prior, double signalCrossSection){
        beta_ZN->setVal( one->get()->getRealValue("beta_ZN") );
        delete one;
     }
+    if( !beta_ZMM0b->isConstant() ){
+       one = prior->generate(RooArgSet(*beta_ZMM0b), 1);
+       beta_ZMM0b->setVal( one->get()->getRealValue("beta_ZMM0b") );
+       delete one;
+    }
+    if( !beta_ZMM1b->isConstant() ){
+       one = prior->generate(RooArgSet(*beta_ZMM1b), 1);
+       beta_ZMM1b->setVal( one->get()->getRealValue("beta_ZMM1b") );
+       delete one;
+    }
+    if( !beta_singleMu->isConstant() ){
+       one = prior->generate(RooArgSet(*beta_singleMu), 1);
+       beta_singleMu->setVal( one->get()->getRealValue("beta_singleMu") );
+       delete one;
+    }
     if( !beta_WJ->isConstant() ){
        one = prior->generate(RooArgSet(*beta_WJ), 1);
        beta_WJ->setVal( one->get()->getRealValue("beta_WJ") );
+       delete one;
+    }
+    if( !beta_nonWJ->isConstant() ){
+       one = prior->generate(RooArgSet(*beta_nonWJ), 1);
+       beta_nonWJ->setVal( one->get()->getRealValue("beta_nonWJ") );
+       delete one;
+    }
+    if( !beta_WJp1b->isConstant() ){
+       one = prior->generate(RooArgSet(*beta_WJp1b), 1);
+       beta_WJp1b->setVal( one->get()->getRealValue("beta_WJp1b") );
        delete one;
     }
     if( !beta_probQCD1b->isConstant() ){
