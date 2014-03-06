@@ -258,7 +258,7 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   wspace->factory( "wjScale_nominal[3.12]" ); // (0.38 + 0.29 + 0.648*0.41)/0.3
   wspace->factory( "wjScale_kappa[1.198]" );  // sqrt( (.07*.07+.07*.07+.648*.02*.648*.02)/(.38+.29+.648*.41)/(.38+.29+.648*.41) + .05*.05/.3/.3 )
   wspace->factory( "wjProb1b_nominal[0.143]" );
-  wspace->factory( "wjProb1b_kappa[.531]" ); // 0.076/0.0143
+  wspace->factory( "wjProb1b_kappa[1.531]" ); // 0.076/0.0143
   wspace->factory( "cexpr::alpha_wjScale( 'pow(wjScale_kappa, beta_WJ)',    wjScale_kappa,  beta_WJ)" );
   wspace->factory( "cexpr::alpha_wjProb1b('pow(wjProb1b_kappa,beta_WJp1b)', wjProb1b_kappa, beta_WJp1b)" );
   wspace->factory( "prod::wjYield0b(wjMuonYield,wjScale_nominal,alpha_wjScale)" );
