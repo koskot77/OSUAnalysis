@@ -87,7 +87,7 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
 
 ///////// lumi block //////////
   // integrated luminosity with log-normal systematics
-  wspace->factory( "lumi_nom[18840.]" );
+  wspace->factory( "lumi_nom[19700.]" );
   wspace->factory( "lumi_kappa[1.044]" );
   wspace->factory( "cexpr::alpha_lumi('pow(lumi_kappa,beta_lumi)',lumi_kappa,beta_lumi[0,-5,5])" );
   wspace->factory( "prod::luminosity(lumi_nom,alpha_lumi)" );
@@ -118,7 +118,7 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   wspace->factory( "Gaussian::pWJ(      beta_WJ[      0,-5,5],glob_WJ[      0,-5,5],1)" );
   wspace->factory( "Gaussian::pWJp1b(   beta_WJp1b[   0,-5,5],glob_WJp1b[   0,-5,5],1)" );
   wspace->factory( "Gaussian::pNonWJ(   beta_nonWJ[   0,-5,5],glob_nonWJ[   0,-5,5],1)" );
-  wspace->factory( "Poisson::pWmu( glob_singleMu[   9,0,100], beta_singleMu[9,0,100])");
+  wspace->factory( "Poisson::pWmu( glob_singleMu[   9,0,20],  beta_singleMu[9,0,20])");
 
 
 //////// signal block /////////
@@ -254,7 +254,7 @@ void cnt3j(int model=S3m100, int MET_CUT=0){ // 0 - 250 GeV, 1 - 300 GeV, 2 - 35
   wspace->factory( "nonWJyield_kappa[1.625]" ); // 2./3.2
   wspace->factory( "cexpr::alpha_nonWJyield('pow(nonWJyield_kappa,beta_nonWJ)',nonWJyield_kappa,beta_nonWJ)" );
   wspace->factory( "prod::nonWJyield(nonWJyield_nominal,alpha_nonWJyield)" );
-  wspace->factory( "cexpr::wjMuonYield('glob_singleMu-nonWJyield',glob_singleMu,nonWJyield)" );
+  wspace->factory( "cexpr::wjMuonYield('beta_singleMu-nonWJyield',beta_singleMu,nonWJyield)" );
   wspace->factory( "wjScale_nominal[3.12]" ); // (0.38 + 0.29 + 0.648*0.41)/0.3
   wspace->factory( "wjScale_kappa[1.198]" );  // sqrt( (.07*.07+.07*.07+.648*.02*.648*.02)/(.38+.29+.648*.41)/(.38+.29+.648*.41) + .05*.05/.3/.3 )
   wspace->factory( "wjProb1b_nominal[0.143]" );
